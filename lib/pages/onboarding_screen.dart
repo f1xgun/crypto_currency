@@ -7,6 +7,8 @@ import 'package:crypto_currency/pages/login_screen.dart';
 import 'package:crypto_currency/widgets/filled_button.dart';
 import 'package:crypto_currency/widgets/outlined_button.dart';
 
+import '../app_style.dart';
+
 class OnboardingPage extends StatefulWidget {
   const OnboardingPage({super.key});
 
@@ -62,7 +64,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
       body: AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle.light,
         child: Container(
-          color: const Color.fromARGB(255, 32, 4, 66),
+          color: kBackgroundColor,
           child: SafeArea(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 20),

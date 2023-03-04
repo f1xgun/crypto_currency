@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:crypto_currency/app_style.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -39,7 +40,7 @@ class _SplashScreenState extends State<SplashScreen> {
         body: Container(
           height: height,
           width: width,
-          color: const Color.fromARGB(255, 32, 4, 66),
+          color: kBackgroundColor,
           child: Column(children: [
             Image.asset('assets/images/bitcoin_splash_screen.gif'),
             const Text('CryptoCurrency App',
