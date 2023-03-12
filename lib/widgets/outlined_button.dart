@@ -1,3 +1,4 @@
+import 'package:crypto_currency/app_styles.dart';
 import 'package:flutter/material.dart';
 
 class CustomOutlinedButton extends StatelessWidget {
@@ -19,8 +20,10 @@ class CustomOutlinedButton extends StatelessWidget {
       ),
       child: Text(
         text,
-        style: const TextStyle(
-            color: Colors.white, fontSize: 20.0, fontWeight: FontWeight.w500),
+        style: kQuestrialMedium.copyWith(
+          color: Colors.white,
+          fontSize: 20.0,
+        ),
       ),
     );
   }

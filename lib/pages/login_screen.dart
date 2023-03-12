@@ -4,7 +4,7 @@ import 'package:crypto_currency/widgets/icon_button.dart';
 import 'package:crypto_currency/widgets/outlined_button.dart';
 import 'package:flutter/material.dart';
 
-import '../app_style.dart';
+import '../app_styles.dart';
 import '../widgets/filled_button.dart';
 
 class LoginPage extends StatefulWidget {

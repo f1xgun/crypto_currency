@@ -1,11 +1,11 @@
 import 'dart:async';
 
-import 'package:crypto_currency/app_style.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'package:crypto_currency/app_styles.dart';
 import 'package:crypto_currency/pages/onboarding_screen.dart';
-import '../main.dart';
+import 'package:crypto_currency/main.dart';
 
 
 class SplashScreen extends StatefulWidget {
