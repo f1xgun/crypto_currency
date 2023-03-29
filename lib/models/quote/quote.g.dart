@@ -7,7 +7,7 @@ part of 'quote.dart';
 // **************************************************************************
 
 Quote _$QuoteFromJson(Map<String, dynamic> json) => Quote(
-      price: double.parse((json['price'] as num).toDouble().toStringAsFixed(2)),
+      price: (json['price'] as num).toDouble(),
       volume24H: (json['volume_24h'] as num).toDouble(),
       marketCap: (json['market_cap'] as num).toDouble(),
       percentChange1H: (json['percent_change_1h'] as num).toDouble(),

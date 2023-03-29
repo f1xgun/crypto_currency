@@ -1,8 +1,10 @@
 import 'dart:convert';
-
-import 'package:crypto_currency/models/payload/payload.dart';
+import 'package:crypto_currency/constants.dart';
+import 'package:crypto_currency/widgets/coin_card.dart';
 import "package:flutter/material.dart";
 import 'package:http/http.dart' as http;
+
+import 'package:crypto_currency/models/payload/payload.dart';
 
 import '../app_styles.dart';
 
@@ -21,7 +23,7 @@ class _RangkingPageState extends State<RangkingPage> {
         Uri.parse(
             "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?start=1&limit=10&convert=USD"),
         headers: {
-          "X-CMC_PRO_API_KEY": "6bc8ae01-d189-45fd-8b3e-3ffa6a91bced",
+          "X-CMC_PRO_API_KEY": COIN_API_KEY,
           "Accept": "application/json",
         });
     if (response.statusCode == 200) {
@@ -43,7 +45,7 @@ class _RangkingPageState extends State<RangkingPage> {
       appBar: AppBar(
         backgroundColor: kBackgroundColor,
         title: const Text(
-          'Rangking',
+          'Ranking',
           style: TextStyle(
             color: Colors.white,
             fontSize: 32,
@@ -78,15 +80,7 @@ class _RangkingPageState extends State<RangkingPage> {
                     return ListView.builder(
                       itemCount: snapshot.data!.data.length,
                       itemBuilder: (context, index) {
-                        return Card(
-                          child: ListTile(
-                            title: Text(snapshot.data!.data[index].name),
-                            subtitle: Text(snapshot.data!.data[index].symbol),
-                            trailing: Text(
-                              '${String.fromCharCodes(Runes('\u0024')) + snapshot.data!.data[index].quote.price.toString()} ',
-                            ),
-                          ),
-                        );
+                        return CoinCard(coin: snapshot.data!.data[index]);
                       },
                     );
                   }
@@ -101,6 +95,7 @@ class _RangkingPageState extends State<RangkingPage> {
             _cryptoCoins = getCryptoCoins();
           });
         },
+        backgroundColor: kBackgroundColor,
         child: const Icon(Icons.refresh),
       ),
     );

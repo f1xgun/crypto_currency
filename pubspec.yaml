@@ -17,6 +17,7 @@ dependencies:
   shared_preferences: ^2.0.18
   google_fonts: ^4.0.3
   json_annotation: ^4.8.0
+  cryptocoins_icons: ^0.3.0
 
 dev_dependencies:
   flutter_test:
