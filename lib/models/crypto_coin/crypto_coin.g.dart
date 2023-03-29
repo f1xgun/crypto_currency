@@ -11,18 +11,23 @@ CryptoCoin _$CryptoCoinFromJson(Map<String, dynamic> json) => CryptoCoin(
       name: json['name'] as String,
       symbol: json['symbol'] as String,
       slug: json['slug'] as String,
-      cmcRank: json['cmcRank'] as int,
-      numMarketPairs: json['numMarketPairs'] as int,
-      circulatingSupply: (json['circulatingSupply'] as num).toDouble(),
-      totalSupply: (json['totalSupply'] as num).toDouble(),
-      maxSupply: (json['maxSupply'] as num).toDouble(),
-      lastUpdated: DateTime.parse(json['lastUpdated'] as String),
-      dateAdded: DateTime.parse(json['dateAdded'] as String),
-      tags: (json['tags'] as List<dynamic>)
-          .map((e) => $enumDecode(_$TagEnumMap, e))
-          .toList(),
-      platform: Platform.fromJson(json['platform'] as Map<String, dynamic>),
-      quote: Quote.fromJson(json['quote'] as Map<String, dynamic>),
+      cmcRank: json['cmc_rank'] as int,
+      numMarketPairs: json['num_market_pairs'] as int,
+      circulatingSupply: json["circulating_supply"] == null
+          ? null
+          : (json['circulating_supply'] as num).toDouble(),
+      totalSupply: json["total_supply"] == null
+          ? null
+          : (json['total_supply'] as num).toDouble(),
+      maxSupply: json["max_supply"] == null
+          ? null
+          : (json['max_supply'] as num).toDouble(),
+      lastUpdated: DateTime.parse(json['last_updated'] as String),
+      dateAdded: DateTime.parse(json['date_added'] as String),
+      platform: json["platfrom"] == null
+          ? null
+          : Platform.fromJson(json['platform'] as Map<String, dynamic>),
+      quote: Quote.fromJson(json['quote']['USD'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$CryptoCoinToJson(CryptoCoin instance) =>
@@ -31,18 +36,13 @@ Map<String, dynamic> _$CryptoCoinToJson(CryptoCoin instance) =>
       'name': instance.name,
       'symbol': instance.symbol,
       'slug': instance.slug,
-      'cmcRank': instance.cmcRank,
-      'numMarketPairs': instance.numMarketPairs,
-      'circulatingSupply': instance.circulatingSupply,
-      'totalSupply': instance.totalSupply,
-      'maxSupply': instance.maxSupply,
-      'lastUpdated': instance.lastUpdated.toIso8601String(),
-      'dateAdded': instance.dateAdded.toIso8601String(),
-      'tags': instance.tags.map((e) => _$TagEnumMap[e]!).toList(),
+      'cmc_rank': instance.cmcRank,
+      'num_market_pairs': instance.numMarketPairs,
+      'circulating_supply': instance.circulatingSupply,
+      'total_supply': instance.totalSupply,
+      'max_supply': instance.maxSupply,
+      'last_updated': instance.lastUpdated.toIso8601String(),
+      'date_added': instance.dateAdded.toIso8601String(),
       'platform': instance.platform,
       'quote': instance.quote,
     };
-
-const _$TagEnumMap = {
-  Tag.MINEABLE: 'MINEABLE',
-};

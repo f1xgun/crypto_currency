@@ -9,7 +9,7 @@ part of 'status.dart';
 Status _$StatusFromJson(Map<String, dynamic> json) => Status(
       timestamp: DateTime.parse(json['timestamp'] as String),
       errorCode: json['error_code'] as int,
-      errorMessage: json['error_message'] as String,
+      errorMessage: json['error_message'],
       elapsed: json['elapsed'] as int,
       creditCount: json['credit_count'] as int,
     );

@@ -6,7 +6,7 @@ part 'status.g.dart';
 class Status {
   DateTime timestamp;
   int errorCode;
-  String errorMessage;
+  dynamic errorMessage;
   int elapsed;
   int creditCount;
 
@@ -18,8 +18,7 @@ class Status {
     required this.creditCount,
   });
 
-  factory Status.fromJson(Map<String, dynamic> json) =>
-      _$StatusFromJson(json);
+  factory Status.fromJson(Map<String, dynamic> json) => _$StatusFromJson(json);
 
   Map<String, dynamic> toJson() => _$StatusToJson(this);
 }

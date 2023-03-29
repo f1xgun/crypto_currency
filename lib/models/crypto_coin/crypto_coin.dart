@@ -12,13 +12,12 @@ class CryptoCoin {
   String slug;
   int cmcRank;
   int numMarketPairs;
-  double circulatingSupply;
-  double totalSupply;
-  double maxSupply;
+  double? circulatingSupply;
+  double? totalSupply;
+  double? maxSupply;
   DateTime lastUpdated;
   DateTime dateAdded;
-  List<Tag> tags;
-  Platform platform;
+  Platform? platform;
   Quote quote;
 
   CryptoCoin({
@@ -33,7 +32,6 @@ class CryptoCoin {
     required this.maxSupply,
     required this.lastUpdated,
     required this.dateAdded,
-    required this.tags,
     required this.platform,
     required this.quote,
   });
@@ -42,20 +40,4 @@ class CryptoCoin {
       _$CryptoCoinFromJson(json);
 
   Map<String, dynamic> toJson() => _$CryptoCoinToJson(this);
-}
-
-enum Tag { MINEABLE }
-
-final tagValues = EnumValues({"mineable": Tag.MINEABLE});
-
-class EnumValues<T> {
-  Map<String, T> map;
-  late Map<T, String> reverseMap;
-
-  EnumValues(this.map);
-
-  Map<T, String> get reverse {
-    if (reverseMap == null) reverseMap = map.map((k, v) => new MapEntry(v, k));
-    return reverseMap;
-  }
 }
