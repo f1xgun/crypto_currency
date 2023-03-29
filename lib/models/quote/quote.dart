@@ -24,5 +24,5 @@ class Quote {
   factory Quote.fromJson(Map<String, dynamic> json) =>
       _$QuoteFromJson(json);
 
-  Map<String, dynamic> json() => _$QuoteToJson(this);
+  Map<String, dynamic> toJson() => _$QuoteToJson(this);
 }
