@@ -11,7 +11,7 @@ Platform _$PlatformFromJson(Map<String, dynamic> json) => Platform(
       name: json['name'] as String,
       symbol: json['symbol'] as String,
       slug: json['slug'] as String,
-      tokenAddress: json['tokenAddress'] as String,
+      tokenAddress: json['token_ddress'] as String,
     );
 
 Map<String, dynamic> _$PlatformToJson(Platform instance) => <String, dynamic>{
@@ -19,5 +19,5 @@ Map<String, dynamic> _$PlatformToJson(Platform instance) => <String, dynamic>{
       'name': instance.name,
       'symbol': instance.symbol,
       'slug': instance.slug,
-      'tokenAddress': instance.tokenAddress,
+      'token_ddress': instance.tokenAddress,
     };

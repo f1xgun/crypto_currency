@@ -10,6 +10,8 @@ class RangkingPage extends StatefulWidget {
 }
 
 class _RangkingPageState extends State<RangkingPage> {
+  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
