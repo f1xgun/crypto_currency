@@ -13,7 +13,7 @@ class CoinCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         color: kListBackgroundColor,
@@ -21,39 +21,11 @@ class CoinCard extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Expanded(child: CoinCardLeading(coin: coin)),
+          Expanded(child: CoinCardLeading(coinId: coin.id)),
           const SizedBox(width: 4),
           Expanded(
             flex: 3,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                RichText(
-                  text: TextSpan(
-                      text: coin.name,
-                      style: kQuestrialSemiBold.copyWith(
-                        fontSize: 18,
-                        color: Colors.white,
-                      ),
-                      children: <TextSpan>[
-                        TextSpan(
-                          text: '/',
-                          style: kQuestrialRegular.copyWith(
-                            color: Colors.grey,
-                            fontSize: 14,
-                          ),
-                        ),
-                        TextSpan(
-                          text: coin.symbol,
-                          style: kQuestrialRegular.copyWith(
-                            color: Colors.grey,
-                            fontSize: 14,
-                          ),
-                        ),
-                      ]),
-                ),
-              ],
-            ),
+            child: CoinCardName(name: coin.name, symbol: coin.symbol),
           ),
           Expanded(flex: 2, child: CoinCardPrice(price: coin.quote.price)),
           Expanded(
@@ -61,6 +33,67 @@ class CoinCard extends StatelessWidget {
               child: CoinCardPercentChange(percent: coin.quote.percentChange1H))
         ],
       ),
+    );
+  }
+}
+
+class CoinCardLeading extends StatelessWidget {
+  const CoinCardLeading({super.key, required this.coinId});
+  final int coinId;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      child: Image.network(
+        'https://s2.coinmarketcap.com/static/img/coins/32x32/$coinId.png',
+      ),
+    );
+  }
+}
+
+class CoinCardName extends StatelessWidget {
+  const CoinCardName({super.key, required this.name, required this.symbol});
+  final String name;
+  final String symbol;
+
+  @override
+  Widget build(BuildContext context) {
+    String formattedName = name;
+    if (name.length > 10) {
+      List<String> partsOfName = name.split(' ');
+      formattedName = partsOfName.length == 1
+          ? name.substring(6)
+          : partsOfName.map((part) => part[0]).join();
+    }
+
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        RichText(
+          text: TextSpan(
+              text: formattedName,
+              style: kQuestrialSemiBold.copyWith(
+                fontSize: 18,
+                color: Colors.white,
+              ),
+              children: <TextSpan>[
+                TextSpan(
+                  text: '/',
+                  style: kQuestrialRegular.copyWith(
+                    color: Colors.grey,
+                    fontSize: 14,
+                  ),
+                ),
+                TextSpan(
+                  text: symbol,
+                  style: kQuestrialRegular.copyWith(
+                    color: Colors.grey,
+                    fontSize: 14,
+                  ),
+                ),
+              ]),
+        ),
+      ],
     );
   }
 }
@@ -80,20 +113,6 @@ class CoinCardPrice extends StatelessWidget {
     return Text(
       formattedPrice,
       style: kQuestrialMedium.copyWith(color: Colors.white, fontSize: 18),
-    );
-  }
-}
-
-class CoinCardLeading extends StatelessWidget {
-  const CoinCardLeading({super.key, required this.coin});
-  final CryptoCoin coin;
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      child: Image.network(
-        'https://s2.coinmarketcap.com/static/img/coins/32x32/${coin.id}.png',
-      ),
     );
   }
 }

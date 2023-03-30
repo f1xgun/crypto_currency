@@ -5,14 +5,37 @@ import 'package:crypto_currency/constants.dart';
 
 class RankingScreenModel extends ChangeNotifier {
   final List<CryptoCoin> _cryptoCoins = [];
-  List<CryptoCoin> get cryptoCoins => _cryptoCoins;
+  bool _isLoading = false;
+  final ScrollController _scrollController = ScrollController();
 
-  void getCryptoCoins() async {
+  List<CryptoCoin> get cryptoCoins => _cryptoCoins;
+  bool get isLoading => _isLoading;
+  ScrollController get scrollController => _scrollController;
+
+  RankingScreenModel() {
+    _scrollController.addListener(_scrollControllerListener);
+  }
+
+  void _scrollControllerListener() {
+    if (_scrollController.position.pixels ==
+        _scrollController.position.maxScrollExtent) {
+      getMoreCryptoCoins();
+    }
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  void getCryptoCoins([int? begin, int? end]) async {
     final dio = Dio();
+    _isLoading = true;
     try {
       dio
           .get(
-              "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?start=1&limit=10&convert=USD",
+              "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?start=${begin ?? 1}&limit=${end ?? 10}&convert=USD",
               options: Options(headers: {
                 "X-CMC_PRO_API_KEY": COIN_API_KEY,
                 "Accept": "application/json",
@@ -27,7 +50,19 @@ class RankingScreenModel extends ChangeNotifier {
     for (var coin in data) {
       _cryptoCoins.add(CryptoCoin.fromJson(coin));
     }
+    _isLoading = false;
     notifyListeners();
+  }
+
+  void refreshCryptoCoins() async {
+    int length = _cryptoCoins.length;
+    _cryptoCoins.clear();
+    getCryptoCoins(1, length);
+    notifyListeners();
+  }
+
+  void getMoreCryptoCoins() {
+    getCryptoCoins(_cryptoCoins.length + 1, _cryptoCoins.length + 10);
   }
 }
 

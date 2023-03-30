@@ -11,6 +11,9 @@ class RankingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final model =
         RankingScreenProvider.watch(context)!.notifier as RankingScreenModel;
+    if (model.cryptoCoins.isEmpty && !model.isLoading) {
+      model.getCryptoCoins();
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -32,11 +35,12 @@ class RankingPage extends StatelessWidget {
             itemBuilder: (context, index) {
               return CoinCard(coin: model.cryptoCoins[index]);
             },
+            controller: model.scrollController,
           ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: model.getCryptoCoins,
+        onPressed: model.refreshCryptoCoins,
         backgroundColor: kBackgroundColor,
         child: const Icon(Icons.refresh),
       ),
