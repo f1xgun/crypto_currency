@@ -1,4 +1,3 @@
-import 'package:crypto_currency/pages/rangking_screen.dart';
 import 'package:crypto_currency/widgets/form_field.dart';
 import 'package:crypto_currency/widgets/icon_button.dart';
 import 'package:crypto_currency/widgets/outlined_button.dart';
@@ -101,12 +100,13 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 CustomFilledButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const RangkingPage(),
-                      ),
-                    );
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //     builder: (context) => const RankingPage(),
+                    //   ),
+                    // );
+                    Navigator.pushNamed(context, '/ranking');
                   },
                   text: 'Go Rangking',
                 ),

@@ -161,14 +161,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.2"
-  cryptocoins_icons:
-    dependency: "direct main"
-    description:
-      name: cryptocoins_icons
-      sha256: bc1d32547dbacb74e2e0f7e2d59d9c09f3ebe47b15cf968c893a8cfe8f30fec7
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.3.0"
   cupertino_icons:
     dependency: "direct main"
     description:
@@ -185,6 +177,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.0"
+  dio:
+    dependency: "direct main"
+    description:
+      name: dio
+      sha256: "0894a098594263fe1caaba3520e3016d8a855caeb010a882273189cca10f11e9"
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.1.1"
   fake_async:
     dependency: transitive
     description:

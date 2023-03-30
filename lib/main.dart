@@ -1,3 +1,5 @@
+import 'package:crypto_currency/pages/ranking_screen.dart';
+import 'package:crypto_currency/pages/ranking_screen_model.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -26,7 +28,12 @@ class MyApp extends StatelessWidget {
       home: seenOnboard == true ? const LoginPage() : const OnboardingPage(),
       routes: <String, WidgetBuilder>{
         '/login': (BuildContext context) => const LoginPage(),
+        '/ranking': (BuildContext context) => RankingScreenProvider(
+              notifier: RankingScreenModel(),
+              child: const RankingPage(),
+            ),
       },
+      initialRoute: '/',
       debugShowCheckedModeBanner: false,
     );
   }
