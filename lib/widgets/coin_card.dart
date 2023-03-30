@@ -80,14 +80,14 @@ class CoinCardName extends StatelessWidget {
                 TextSpan(
                   text: '/',
                   style: kQuestrialRegular.copyWith(
-                    color: Colors.grey,
+                    color: kLightGrayColor,
                     fontSize: 14,
                   ),
                 ),
                 TextSpan(
                   text: symbol,
                   style: kQuestrialRegular.copyWith(
-                    color: Colors.grey,
+                    color: kLightGrayColor,
                     fontSize: 14,
                   ),
                 ),
@@ -142,8 +142,8 @@ class CoinCardPercentChange extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(5),
               color: percentStatus == PriceStatus.POSITIVE
-                  ? const Color.fromARGB(255, 19, 105, 55)
-                  : const Color.fromARGB(255, 94, 12, 12),
+                  ? kDarkGreenColor
+                  : kRedDarkColor,
             ),
             child: Center(
               child: Text(
@@ -151,9 +151,10 @@ class CoinCardPercentChange extends StatelessWidget {
                 formattedPercent,
                 maxLines: 1,
                 style: kQuestrialMedium.copyWith(
-                    color: percentStatus == PriceStatus.POSITIVE
-                        ? const Color.fromARGB(255, 85, 250, 154)
-                        : const Color.fromARGB(255, 235, 66, 66)),
+                  color: percentStatus == PriceStatus.POSITIVE
+                      ? kGreenColor
+                      : kRedColor,
+                ),
               ),
             ),
           )

@@ -16,8 +16,7 @@ class CustomFilledButton extends StatelessWidget {
         padding: MaterialStateProperty.all(
           const EdgeInsets.symmetric(vertical: 20),
         ),
-        backgroundColor:
-            MaterialStateProperty.all(const Color.fromARGB(255, 141, 76, 254)),
+        backgroundColor: MaterialStateProperty.all(const Color(0xff814EBB)),
       ),
       child: Text(
         text,
