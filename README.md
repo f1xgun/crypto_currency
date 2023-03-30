@@ -7,9 +7,11 @@
 
 <h2 align="center">Roadmap</h2>
 <h3>Completed Features:</h3>
+
 - [x] Display list of cryptocurrency prices in USD with percentage change
 
 <h3>Upcoming Features:</h3>
+
 - [ ] View details about individual cryptocurrencies with displaying price chart
 - [ ] Search functionality for finding specific cryptocurrencies
 - [ ] Ability to save favorite cryptocurrencies
@@ -24,4 +26,4 @@
 If you find any issues or have suggestions for improvement, feel free to submit an issue or pull request.
 
 <h2>License</h2>
-This project is licensed under the MIT License. See the [LICENSE](LICENSE.md) file for details.
+This project is licensed under the MIT License. See the LICENSE file for details.
