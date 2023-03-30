@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:crypto_currency/app_styles.dart';
 import 'package:crypto_currency/models/crypto_coin/crypto_coin.dart';
-import 'package:cryptocoins_icons/cryptocoins_icons.dart';
 
 class CoinCard extends StatelessWidget {
   const CoinCard({super.key, required this.coin});
@@ -90,20 +89,9 @@ class CoinCardLeading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 50,
-      height: 50,
-      child: CryptoCoinIcons.containsCrypto(coin.symbol)
-          ? Icon(CryptoCoinIcons.getCryptoIcon(coin.symbol),
-              color: Colors.white, size: 35)
-          : Center(
-              child: Text(
-                coin.name[0],
-                style: kQuestrialBold.copyWith(
-                  fontSize: 24,
-                  color: Colors.white,
-                ),
-              ),
-            ),
+      child: Image.network(
+        'https://s2.coinmarketcap.com/static/img/coins/32x32/${coin.id}.png',
+      ),
     );
   }
 }
