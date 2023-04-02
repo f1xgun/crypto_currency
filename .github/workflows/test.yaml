@@ -13,7 +13,7 @@ jobs:
         with:
           channel: 'stable'
       - run: flutter pub get
-      - run: flutter analyze --dart-define=COIN_API_KEY=$COIN_API_KEY
+      - run: flutter analyze --dart-define=COIN_API_KEY=${{ secrets.COIN_API_KEY }}
 
       - run: flutter test --coverage
 
