@@ -9,9 +9,9 @@ jobs:
     runs-on: macos-latest
     
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2.7.0
 
-      - uses: subosito/flutter-action@v1
+      - uses: subosito/flutter-action@v2.10.0
         with:
           channel: 'stable'
       - run: flutter pub get
@@ -21,7 +21,7 @@ jobs:
       - run: flutter test --coverage
 
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v1
+        uses: codecov/codecov-action@v3.1.1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           file: coverage/lcov.info
