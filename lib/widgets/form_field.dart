@@ -1,3 +1,4 @@
+import "package:crypto_currency/app_styles.dart";
 import "package:flutter/material.dart";
 
 class FieldOfForm extends StatefulWidget {
@@ -30,7 +31,7 @@ class _FieldOfFormState extends State<FieldOfForm> {
           borderRadius: BorderRadius.circular(5),
           borderSide: BorderSide(color: Colors.grey[900]!),
         ),
-        fillColor: Colors.grey[850],
+        fillColor: kListBackgroundColor,
         filled: true,
       ),
     );

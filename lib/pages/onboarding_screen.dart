@@ -47,8 +47,9 @@ class _OnboardingPageState extends State<OnboardingPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.6,
+                    Expanded(
+                      // height: MediaQuery.of(context).size.height * 0.6,
+                      flex: 3,
                       child: PageView(
                         physics: const ClampingScrollPhysics(),
                         controller: _pageController,
@@ -76,16 +77,18 @@ class _OnboardingPageState extends State<OnboardingPage> {
                         ],
                       ),
                     ),
+                    Expanded(
+                      child: BottomSheetWidget(
+                        isLast: _currentPage == MyAppState()._numPages - 1,
+                        pageController: _pageController,
+                        currentPage: _currentPage,
+                      ),
+                    )
                   ],
                 ),
               ),
             ),
           ),
-        ),
-        bottomSheet: BottomSheetWidget(
-          isLast: _currentPage == MyAppState()._numPages - 1,
-          pageController: _pageController,
-          currentPage: _currentPage,
         ),
       ),
     );

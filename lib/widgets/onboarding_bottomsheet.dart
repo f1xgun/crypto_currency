@@ -11,11 +11,13 @@ import 'package:crypto_currency/widgets/indicator.dart';
 import 'package:crypto_currency/widgets/outlined_button.dart';
 
 class BottomSheetWidget extends StatefulWidget {
-  const BottomSheetWidget(
-      {super.key,
-      required this.isLast,
-      required this.pageController,
-      required this.currentPage});
+  const BottomSheetWidget({
+    super.key,
+    required this.isLast,
+    required this.pageController,
+    required this.currentPage,
+  });
+  
   final bool isLast;
   final PageController pageController;
   final int currentPage;
@@ -37,9 +39,11 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
     List<Widget> _buildPageIndicator() {
       List<Widget> list = [];
       for (int i = 0; i < appState.numPages; i++) {
-        list.add(i == widget.currentPage
-            ? const Indicator(isActive: true)
-            : const Indicator(isActive: false));
+        list.add(
+          i == widget.currentPage
+              ? const Indicator(isActive: true)
+              : const Indicator(isActive: false),
+        );
       }
       return list;
     }
@@ -63,7 +67,8 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
               widget.isLast
                   ? Navigator.of(context).pushReplacement(
                       MaterialPageRoute(
-                          builder: (context) => const LoginPage()),
+                        builder: (context) => const LoginPage(),
+                      ),
                     )
                   : widget.pageController.nextPage(
                       duration: const Duration(milliseconds: 500),
@@ -79,7 +84,9 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
             onPressed: () {
               if (widget.isLast) setSeenonboard();
               Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) => const LoginPage()),
+                MaterialPageRoute(
+                  builder: (context) => const LoginPage(),
+                ),
               );
             },
             text: widget.isLast ? 'Dont show again' : 'Skip',
