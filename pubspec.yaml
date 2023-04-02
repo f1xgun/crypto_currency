@@ -18,6 +18,8 @@ dependencies:
   google_fonts: ^4.0.3
   json_annotation: ^4.8.0
   dio: ^5.0.2
+  flutter_driver:
+    sdk: flutter
 
 dev_dependencies:
   flutter_test:
