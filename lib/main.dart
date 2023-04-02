@@ -1,3 +1,5 @@
+import 'package:crypto_currency/pages/main_screen.dart';
+import 'package:crypto_currency/pages/main_screen_model.dart';
 import 'package:crypto_currency/pages/ranking_screen.dart';
 import 'package:crypto_currency/pages/ranking_screen_model.dart';
 import 'package:flutter/material.dart';
@@ -31,6 +33,10 @@ class MyApp extends StatelessWidget {
         '/ranking': (BuildContext context) => RankingScreenProvider(
               notifier: RankingScreenModel(),
               child: const RankingPage(),
+            ),
+        '/home': (BuildContext context) => MainScreenProvider(
+              notifier: MainScreenModel(),
+              child: const MainScreen(),
             ),
       },
       initialRoute: '/',

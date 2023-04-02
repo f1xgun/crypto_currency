@@ -50,7 +50,8 @@ class _LoginPageState extends State<LoginPage> {
                   height: 30,
                 ),
                 CustomFilledButton(
-                  onPressed: () {},
+                  onPressed: () =>
+                      Navigator.pushReplacementNamed(context, '/home'),
                   text: 'Login',
                 ),
                 const SizedBox(
@@ -100,12 +101,6 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 CustomFilledButton(
                   onPressed: () {
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //     builder: (context) => const RankingPage(),
-                    //   ),
-                    // );
                     Navigator.pushNamed(context, '/ranking');
                   },
                   text: 'Go Rangking',

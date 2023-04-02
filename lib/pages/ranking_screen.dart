@@ -14,7 +14,6 @@ class RankingPage extends StatelessWidget {
     if (model.cryptoCoins.isEmpty && !model.isLoading) {
       model.getCryptoCoins();
     }
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: kBackgroundColor,
@@ -37,15 +36,17 @@ class RankingPage extends StatelessWidget {
             child: Column(
               children: [
                 const RankingScreenListHeading(),
-                Expanded(
-                  child: ListView.builder(
-                    itemCount: model.cryptoCoins.length,
-                    itemBuilder: (context, index) {
-                      return CoinCard(coin: model.cryptoCoins[index]);
-                    },
-                    controller: model.scrollController,
-                  ),
-                ),
+                model.isLoading
+                    ? const CircularProgressIndicator()
+                    : Expanded(
+                        child: ListView.builder(
+                          itemCount: model.cryptoCoins.length,
+                          itemBuilder: (context, index) {
+                            return CoinCard(coin: model.cryptoCoins[index]);
+                          },
+                          controller: model.scrollController,
+                        ),
+                      ),
               ],
             ),
           ),
