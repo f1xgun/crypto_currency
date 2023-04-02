@@ -10,23 +10,23 @@ import 'package:crypto_currency/widgets/filled_button.dart';
 import 'package:crypto_currency/widgets/indicator.dart';
 import 'package:crypto_currency/widgets/outlined_button.dart';
 
-class BottomSheetWidget extends StatefulWidget {
-  const BottomSheetWidget({
+class OnboardingBottomSheetWidget extends StatefulWidget {
+  const OnboardingBottomSheetWidget({
     super.key,
     required this.isLast,
     required this.pageController,
     required this.currentPage,
   });
-  
+
   final bool isLast;
   final PageController pageController;
   final int currentPage;
 
   @override
-  State<BottomSheetWidget> createState() => _BottomSheetWidgetState();
+  State<OnboardingBottomSheetWidget> createState() => _OnboardingBottomSheetWidgetState();
 }
 
-class _BottomSheetWidgetState extends State<BottomSheetWidget> {
+class _OnboardingBottomSheetWidgetState extends State<OnboardingBottomSheetWidget> {
   Future setSeenonboard() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     seenOnboard = await prefs.setBool('seenOnboard', true);
@@ -36,7 +36,7 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
 
-    List<Widget> _buildPageIndicator() {
+    List<Widget> buildPageIndicator() {
       List<Widget> list = [];
       for (int i = 0; i < appState.numPages; i++) {
         list.add(
@@ -57,7 +57,7 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Row(
-            children: _buildPageIndicator(),
+            children: buildPageIndicator(),
           ),
           const SizedBox(
             height: 15,

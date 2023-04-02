@@ -78,7 +78,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                       ),
                     ),
                     Expanded(
-                      child: BottomSheetWidget(
+                      child: OnboardingBottomSheetWidget(
                         isLast: _currentPage == MyAppState()._numPages - 1,
                         pageController: _pageController,
                         currentPage: _currentPage,
