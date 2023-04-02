@@ -1,13 +1,11 @@
 name: test
 
-on: [push,pull_request]
+on: [push, pull_request]
 
 jobs:
-
   test:
-    
     runs-on: macos-latest
-    
+
     steps:
       - uses: actions/checkout@v2.7.0
 
@@ -15,8 +13,7 @@ jobs:
         with:
           channel: 'stable'
       - run: flutter pub get
-
-      - run: flutter analyze
+      - run: flutter analyze --dart-define=COIN_API_KEY=$COIN_API_KEY
 
       - run: flutter test --coverage
 
