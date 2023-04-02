@@ -1,4 +1,3 @@
-import 'package:crypto_currency/app_styles.dart';
 import 'package:crypto_currency/pages/main_screen_model.dart';
 import 'package:crypto_currency/widgets/bottom_navigation.dart';
 import 'package:flutter/material.dart';
