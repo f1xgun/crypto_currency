@@ -2,8 +2,6 @@ name: Test, build and deploy app
 
 on:
   push:
-    tags:
-      - '*'
     branches:
       - 'main'
 
@@ -75,6 +73,7 @@ jobs:
           artifacts: |
             build/app/outputs/flutter-apk/app-release.apk
           token: ${{ secrets.GITHUB_TOKEN }}
+          tag: v0.0.${{ github.run_number }}
         if: success()
 
   build_ios:
@@ -103,6 +102,7 @@ jobs:
           artifacts: |
             build/ios/iphoneos/Runner.app
           token: ${{ secrets.GITHUB_TOKEN }}
+          tag: v0.0.${{ github.run_number }}
         if: success()
 
   build_web:
