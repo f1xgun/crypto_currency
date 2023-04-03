@@ -65,9 +65,7 @@ jobs:
         run: flutter pub get
 
       - name: Build APK
-        env: 
-          COIN_API_KEY: ${{ secrets.COIN_API_KEY }}
-        run: flutter build apk
+        run: flutter build apk --dart-define=COIN_API_KEY=${{ secrets.COIN_API_KEY }}
 
       - name: Deploy APK to GitHub Releases
         uses: ncipollo/release-action@v1.12.0
@@ -96,9 +94,7 @@ jobs:
         run: flutter pub get
 
       - name: Build iOS
-        env: 
-          COIN_API_KEY: ${{ secrets.COIN_API_KEY }}
-        run: flutter build ios --release --no-codesign
+        run: flutter build ios --release --no-codesign --dart-define=COIN_API_KEY=${{ secrets.COIN_API_KEY }}
 
       - name: Deploy iOS to GitHub Releases
         uses: ncipollo/release-action@v1.12.0
@@ -127,9 +123,7 @@ jobs:
         run: flutter pub get
 
       - name: Build web
-        env: 
-          COIN_API_KEY: ${{ secrets.COIN_API_KEY }}
-        run: flutter build web
+        run: flutter build web --dart-define=COIN_API_KEY=${{ secrets.COIN_API_KEY }}
 
       - name: Deploy web to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@3.7.1
