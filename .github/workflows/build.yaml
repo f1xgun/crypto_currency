@@ -1,37 +1,108 @@
 name: Test, build and deploy app
 on: [push, pull_request]
 jobs:
-  build_deploy:
-    if: github.event_name != 'pull_request'
-    runs-on: macos-latest
-    needs: [drive_ios, drive_android, test]
-    name: Build  apk  and web
+  test:
+    name: "Test before build and deploy"
+    runs-on: unubtu-latest
+
     steps:
-      - uses: actions/checkout@v2.7.0
-      - uses: subosito/flutter-action@v2.10.0
-        with:
-          channel: 'stable'
-      - uses: actions/setup-java@v1.4.4
+      - uses: actions/checkout@v2
+
+      - name: Setup java-version
+        uses: actions/setup-java@v2
         with:
           java-version: '12.x'
-      - run: flutter  config --enable-web
-      - run: flutter  config --enable-linux-desktop
-      - run: flutter  config --enable-macos-desktop
-      - run: flutter  config --enable-windows-desktop
-      - run: flutter pub get
-      - run: flutter build macos --release
-      - run: flutter build apk --debug --split-per-abi
 
-      - name: Create a Release APK
-        uses: ncipollo/release-action@v1.12.0
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
         with:
-          artifacts: 'build/app/outputs/apk/debug/*.apk,build/macos/Build/Products/Release/*.app'
+          channel: 'stable'
+      
+      - name: Get Packages
+        run: flutter pub get
+
+      - name: Run tests
+        run: flutter test
+
+  build_anroid:
+    name: Build and Deploy Android
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Setup Java
+          uses: actions/setup-java@v2
+          with:
+            java-version: '12.x'
+
+        - name: Setup Flutter
+          uses: subosito/flutter-action@v2
+          with:
+            channel: 'stable'
+
+        - name: Get dependencies
+          run: flutter pub get
+
+        - name: Build APK
+          run: flutter build apk
+
+        - name: Deploy APK to GitHub Releases
+          uses: ncipollo/release-action@v2
+          with:
+            artifacts: |
+              build/app/outputs/flutter-apk/app-release.apk
+            token: ${{ secrets.GITHUB_TOKEN }}
+        if: success()
+
+  build_ios:
+    name: Build and Deploy iOS
+    runs-on: macos-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+
+      - name: Get dependencies
+        run: flutter pub get
+
+      - name: Build iOS
+        run: flutter build ios --release --no-codesign
+
+      - name: Deploy iOS to GitHub Releases
+        uses: ncipollo/release-action@v2
+        with:
+          artifacts: |
+            build/ios/iphoneos/Runner.app
           token: ${{ secrets.GITHUB_TOKEN }}
-      - run: flutter build web
+        if: success()
 
-      - uses: JamesIves/github-pages-deploy-action@releases/v4.4.1
+  build_web:
+    name: Build and Deploy Web
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_ACCESS_TOKEN }}
-          BASE_BRANCH: master
+          channel: 'stable'
+
+      - name: Get dependencies
+        run: flutter pub get
+
+      - name: Build web
+        run: flutter build web
+
+      - name: Deploy web to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@3.7.1
+        with:
+          ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages
           FOLDER: build/web
+        if: success()
