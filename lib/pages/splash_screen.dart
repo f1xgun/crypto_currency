@@ -4,9 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:crypto_currency/app_styles.dart';
-import 'package:crypto_currency/pages/onboarding_screen.dart';
 import 'package:crypto_currency/main.dart';
-
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -25,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
       const Duration(seconds: 1),
       () => Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (BuildContext context) => const OnboardingPage(),
+          builder: (BuildContext context) => const MyApp(),
         ),
       ),
     );
@@ -41,11 +39,10 @@ class _SplashScreenState extends State<SplashScreen> {
           height: height,
           width: width,
           color: kBackgroundColor,
-          child: Column(children: [
-            Image.asset('assets/images/bitcoin_splash_screen.gif'),
-            const Text('CryptoCurrency App',
-                style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold))
-          ]),
+          child: const Center(
+            child: Text('CryptoCurrency App',
+                style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold)),
+          ),
         ),
       ),
     );

@@ -42,13 +42,11 @@ class _OnboardingPageState extends State<OnboardingPage> {
             color: kBackgroundColor,
             child: SafeArea(
               child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 0, vertical: 20),
+                padding: const EdgeInsets.symmetric(vertical: 20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
                     Expanded(
-                      // height: MediaQuery.of(context).size.height * 0.6,
                       flex: 3,
                       child: PageView(
                         physics: const ClampingScrollPhysics(),

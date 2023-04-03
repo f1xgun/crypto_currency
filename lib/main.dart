@@ -1,5 +1,5 @@
+import 'package:crypto_currency/services/config.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:crypto_currency/pages/login_screen.dart';
@@ -12,7 +12,7 @@ import 'package:crypto_currency/pages/ranking_screen_model.dart';
 bool? seenOnboard;
 
 Future<void> main() async {
-  await dotenv.load(fileName: '.env');
+  await Config.load();
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences pref = await SharedPreferences.getInstance();
   seenOnboard = pref.getBool('seenOnboard') ?? false;

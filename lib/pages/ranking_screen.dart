@@ -38,7 +38,7 @@ class RankingPage extends StatelessWidget {
             child: Column(
               children: [
                 const RankingScreenListHeading(),
-                model.isLoading
+                model.isLoading && model.cryptoCoins.isEmpty
                     ? const CircularProgressIndicator()
                     : Expanded(
                         child: ListView.builder(

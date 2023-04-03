@@ -23,10 +23,12 @@ class OnboardingBottomSheetWidget extends StatefulWidget {
   final int currentPage;
 
   @override
-  State<OnboardingBottomSheetWidget> createState() => _OnboardingBottomSheetWidgetState();
+  State<OnboardingBottomSheetWidget> createState() =>
+      _OnboardingBottomSheetWidgetState();
 }
 
-class _OnboardingBottomSheetWidgetState extends State<OnboardingBottomSheetWidget> {
+class _OnboardingBottomSheetWidgetState
+    extends State<OnboardingBottomSheetWidget> {
   Future setSeenonboard() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     seenOnboard = await prefs.setBool('seenOnboard', true);
@@ -49,9 +51,8 @@ class _OnboardingBottomSheetWidgetState extends State<OnboardingBottomSheetWidge
     }
 
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 30),
       color: kBackgroundColor,
-      height: 240,
       width: double.infinity,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -59,9 +60,7 @@ class _OnboardingBottomSheetWidgetState extends State<OnboardingBottomSheetWidge
           Row(
             children: buildPageIndicator(),
           ),
-          const SizedBox(
-            height: 15,
-          ),
+          const SizedBox(height: 15),
           CustomFilledButton(
             onPressed: () {
               widget.isLast
