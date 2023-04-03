@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:crypto_currency/models/crypto_coin/crypto_coin.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class RankingScreenModel extends ChangeNotifier {
   final List<CryptoCoin> _cryptoCoins = [];
@@ -29,6 +30,7 @@ class RankingScreenModel extends ChangeNotifier {
   }
 
   void getCryptoCoins([int? begin, int? end]) async {
+    print(const String.fromEnvironment('COIN_API_KEY'));
     final dio = Dio();
     _isLoading = true;
     try {
@@ -36,8 +38,7 @@ class RankingScreenModel extends ChangeNotifier {
           .get(
               "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?start=${begin ?? 1}&limit=${end ?? 10}&convert=USD",
               options: Options(headers: {
-                "X-CMC_PRO_API_KEY":
-                    const String.fromEnvironment('COIN_API_KEY'),
+                "X-CMC_PRO_API_KEY": dotenv.get('COIN_API_KEY'),
                 "Accept": "application/json",
               }))
           .then((value) => createCryptoCoins(value.data["data"]));

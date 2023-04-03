@@ -1,16 +1,18 @@
-import 'package:crypto_currency/pages/main_screen.dart';
-import 'package:crypto_currency/pages/main_screen_model.dart';
-import 'package:crypto_currency/pages/ranking_screen.dart';
-import 'package:crypto_currency/pages/ranking_screen_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:crypto_currency/pages/login_screen.dart';
 import 'package:crypto_currency/pages/onboarding_screen.dart';
+import 'package:crypto_currency/pages/main_screen.dart';
+import 'package:crypto_currency/pages/main_screen_model.dart';
+import 'package:crypto_currency/pages/ranking_screen.dart';
+import 'package:crypto_currency/pages/ranking_screen_model.dart';
 
 bool? seenOnboard;
 
-void main() async {
+Future<void> main() async {
+  await dotenv.load(fileName: '.env');
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences pref = await SharedPreferences.getInstance();
   seenOnboard = pref.getBool('seenOnboard') ?? false;
