@@ -9,7 +9,7 @@ class Config {
       await dotenv.load();
       envVars = {...envVars, ...dotenv.env};
     } on Exception catch (e) {
-      print("Error loading .env file: $e");
+      throw("Error loading .env file: $e");
     }
   }
 
