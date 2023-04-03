@@ -30,7 +30,6 @@ class RankingScreenModel extends ChangeNotifier {
   }
 
   void getCryptoCoins([int? begin, int? end]) async {
-    print(const String.fromEnvironment('COIN_API_KEY'));
     final dio = Dio();
     _isLoading = true;
     try {
