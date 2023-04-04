@@ -41011,7 +41011,7 @@ q.b=!0
 try{j=a==null?1:a
 o=b==null?10:b
 n=t.z
-m=A.aD8(A.aH(["X-CMC_PRO_API_KEY","6bc8ae01-d189-45fd-8b3e-3ffa6a91bced","Accept","application/json"],t.N,n))
+m=A.aD8(A.aH(["X-CMC_PRO_API_KEY","6bc8ae01-d189-45fd-8b3e-3ffa6a91bced","Accept","application/json","Access-Control-Request-Headets","*","Access-Control-Allow-Origin","*","Access-Control-Allow-Credentials","true"],t.N,n))
 m.a="GET"
 J.azY(p,"https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?start="+j+"&limit="+o+"&convert=USD",null,null,null,m,null,n).b_(new A.a6I(q),t.H)}catch(i){j=A.bM("Failed to load data")
 throw A.c(j)}return A.V(null,r)}})
