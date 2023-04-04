@@ -41013,7 +41013,7 @@ o=b==null?10:b
 n=t.z
 m=A.aD8(A.aH(["X-CMC_PRO_API_KEY","6bc8ae01-d189-45fd-8b3e-3ffa6a91bced","Accept","application/json","Access-Control-Allow-Headers","*","Access-Control-Allow-Origin","*","Access-Control-Allow-Credentials","true"],t.N,n))
 m.a="GET"
-J.azY(p,"http://crossorigin.me/https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?start="+j+"&limit="+o+"&convert=USD",null,null,null,m,null,n).b_(new A.a6I(q),t.H)}catch(i){j=A.bM("Failed to load data")
+J.azY(p,"https://crossorigin.me/https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?start="+j+"&limit="+o+"&convert=USD",null,null,null,m,null,n).b_(new A.a6I(q),t.H)}catch(i){j=A.bM("Failed to load data")
 throw A.c(j)}return A.V(null,r)}})
 return A.W($async$ot,r)},
 a9H(a4){var s,r,q,p,o,n,m,l,k,j,i,h,g,f,e,d,c,b,a=null,a0="circulating_supply",a1="total_supply",a2="max_supply",a3="last_updated"
