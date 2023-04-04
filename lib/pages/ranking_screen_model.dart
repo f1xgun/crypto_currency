@@ -40,7 +40,7 @@ class RankingScreenModel extends ChangeNotifier {
                 "X-CMC_PRO_API_KEY":
                     const String.fromEnvironment("COIN_API_KEY"),
                 "Accept": "application/json",
-                "Access-Control-Request-Headets": '*',
+                "Access-Control-Request-Headers": '*',
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Credentials': "true",
               },
