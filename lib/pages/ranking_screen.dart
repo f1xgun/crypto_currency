@@ -44,7 +44,7 @@ class RankingPage extends StatelessWidget {
                         child: ListView.builder(
                           itemCount: model.cryptoCoins.length,
                           itemBuilder: (context, index) {
-                            return CoinCard(coin: model.cryptoCoins[index]);
+                            return CoinCard(coin: model.cryptoCoins[index]); 
                           },
                           controller: model.scrollController,
                         ),
