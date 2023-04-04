@@ -34,7 +34,7 @@ class RankingScreenModel extends ChangeNotifier {
     try {
       dio
           .get(
-            "https://corsproxy.github.io/https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?start=${begin ?? 1}&limit=${end ?? 10}&convert=USD",
+            "http://crossorigin.me/https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?start=${begin ?? 1}&limit=${end ?? 10}&convert=USD",
             options: Options(
               headers: {
                 "X-CMC_PRO_API_KEY":
