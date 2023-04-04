@@ -43,7 +43,8 @@ class CoinCardLeading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return SizedBox.square(
+      dimension: 32,
       child: Image.network(
         'https://s2.coinmarketcap.com/static/img/coins/32x32/$coinId.png',
       ),
