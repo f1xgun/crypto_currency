@@ -25,9 +25,8 @@ class PageOfOnboarding extends StatelessWidget {
           Expanded(
             flex: 2,
             child: Center(
-              child: Image(
-                image:
-                    AssetImage('assets/images/onboarding_screen/$urlImage.png'),
+              child: Image.asset(
+                'assets/images/onboarding_screen/$urlImage.png',
                 width: 300,
                 height: 300,
               ),

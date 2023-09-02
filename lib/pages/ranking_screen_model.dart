@@ -34,11 +34,10 @@ class RankingScreenModel extends ChangeNotifier {
     try {
       dio
           .get(
-            "https://crossorigin.me/https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?start=${begin ?? 1}&limit=${end ?? 10}&convert=USD",
+            "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?start=${begin ?? 1}&limit=${end ?? 10}&convert=USD",
             options: Options(
               headers: {
-                "X-CMC_PRO_API_KEY":
-                    const String.fromEnvironment("COIN_API_KEY"),
+                "X-CMC_PRO_API_KEY": "6bc8ae01-d189-45fd-8b3e-3ffa6a91bced",
                 "Accept": "application/json",
                 "Access-Control-Allow-Headers": '*',
                 'Access-Control-Allow-Origin': '*',
