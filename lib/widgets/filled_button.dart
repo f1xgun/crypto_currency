@@ -17,6 +17,9 @@ class CustomFilledButton extends StatelessWidget {
           const EdgeInsets.symmetric(vertical: 20),
         ),
         backgroundColor: MaterialStateProperty.all(context.colors.purpleDark),
+        side: const MaterialStatePropertyAll(BorderSide.none),
+        shape: const MaterialStatePropertyAll(RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(5)))),
       ),
       child: Text(
         text,
