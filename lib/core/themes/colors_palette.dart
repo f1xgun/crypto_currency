@@ -10,6 +10,8 @@ class ColorsPalette {
   final Color priceUpText;
   final Color priceUpBackground;
   final Color priceUpTradeText;
+  final Color prefixInputIcon;
+  final Color suffixInput;
   final Color white;
   final Color white50;
   final Color white30;
@@ -31,6 +33,8 @@ class ColorsPalette {
   final LinearGradient purpleBlackGradient;
 
   const ColorsPalette({
+    required this.prefixInputIcon,
+    required this.suffixInput,
     required this.mainText,
     required this.subText,
     required this.background,

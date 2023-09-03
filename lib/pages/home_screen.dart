@@ -1,5 +1,5 @@
+import 'package:crypto_currency/core/extensions/build_context_extension.dart';
 import 'package:flutter/material.dart';
-import 'package:crypto_currency/app_styles.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -8,13 +8,11 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: kBackgroundColor,
-        title: const Text(
+        backgroundColor: context.colors.background,
+        title: Text(
           'Home',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 32,
-            fontWeight: FontWeight.bold,
+          style: context.textStyles.h2.copyWith(
+            color: context.colors.mainText,
           ),
         ),
       ),

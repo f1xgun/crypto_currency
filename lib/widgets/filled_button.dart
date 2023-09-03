@@ -1,4 +1,4 @@
-import 'package:crypto_currency/app_styles.dart';
+import 'package:crypto_currency/core/extensions/build_context_extension.dart';
 import 'package:flutter/material.dart';
 
 class CustomFilledButton extends StatelessWidget {
@@ -16,14 +16,11 @@ class CustomFilledButton extends StatelessWidget {
         padding: MaterialStateProperty.all(
           const EdgeInsets.symmetric(vertical: 20),
         ),
-        backgroundColor: MaterialStateProperty.all(const Color(0xff814EBB)),
+        backgroundColor: MaterialStateProperty.all(context.colors.purpleDark),
       ),
       child: Text(
         text,
-        style: kQuestrialMedium.copyWith(
-          color: Colors.white,
-          fontSize: 20.0,
-        ),
+        style: context.textStyles.h4.copyWith(color: context.colors.white),
       ),
     );
   }

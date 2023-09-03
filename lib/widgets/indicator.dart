@@ -1,3 +1,4 @@
+import 'package:crypto_currency/core/extensions/build_context_extension.dart';
 import 'package:flutter/material.dart';
 
 class Indicator extends StatefulWidget {
@@ -17,10 +18,8 @@ class _IndicatorState extends State<Indicator> {
       height: 8,
       width: widget.isActive ? 24 : 8,
       decoration: BoxDecoration(
-        color: widget.isActive ? Colors.purple[400] : Colors.grey,
-        borderRadius: const BorderRadius.all(
-          Radius.circular(12),
-        ),
+        color: widget.isActive ? context.colors.purple : context.colors.dark70,
+        borderRadius: const BorderRadius.all(Radius.circular(12)),
       ),
     );
   }

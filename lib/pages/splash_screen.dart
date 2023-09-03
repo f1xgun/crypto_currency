@@ -1,9 +1,9 @@
 import 'dart:async';
 
+import 'package:crypto_currency/core/extensions/build_context_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'package:crypto_currency/app_styles.dart';
 import 'package:crypto_currency/main.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -38,10 +38,12 @@ class _SplashScreenState extends State<SplashScreen> {
         body: Container(
           height: height,
           width: width,
-          color: kBackgroundColor,
-          child: const Center(
-            child: Text('CryptoCurrency App',
-                style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold)),
+          color: context.colors.background,
+          child: Center(
+            child: Text(
+              'CryptoCurrency App',
+              style: context.textStyles.bold,
+            ),
           ),
         ),
       ),

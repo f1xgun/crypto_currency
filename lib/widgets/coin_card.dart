@@ -1,8 +1,8 @@
 // ignore_for_file: constant_identifier_names
 
+import 'package:crypto_currency/core/extensions/build_context_extension.dart';
 import 'package:flutter/material.dart';
 
-import 'package:crypto_currency/app_styles.dart';
 import 'package:crypto_currency/models/crypto_coin/crypto_coin.dart';
 
 class CoinCard extends StatelessWidget {
@@ -16,7 +16,7 @@ class CoinCard extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        color: kListBackgroundColor,
+        color: context.colors.inActiveBackground,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -72,27 +72,25 @@ class CoinCardName extends StatelessWidget {
       children: [
         RichText(
           text: TextSpan(
-              text: formattedName,
-              style: kQuestrialSemiBold.copyWith(
-                fontSize: 18,
-                color: Colors.white,
+            text: formattedName,
+            style: context.textStyles.headline.copyWith(
+              color: context.colors.mainText,
+            ),
+            children: <TextSpan>[
+              TextSpan(
+                text: '/',
+                style: context.textStyles.body.copyWith(
+                  color: context.colors.subText,
+                ),
               ),
-              children: <TextSpan>[
-                TextSpan(
-                  text: '/',
-                  style: kQuestrialRegular.copyWith(
-                    color: kLightGrayColor,
-                    fontSize: 14,
-                  ),
+              TextSpan(
+                text: symbol,
+                style: context.textStyles.body.copyWith(
+                  color: context.colors.subText,
                 ),
-                TextSpan(
-                  text: symbol,
-                  style: kQuestrialRegular.copyWith(
-                    color: kLightGrayColor,
-                    fontSize: 14,
-                  ),
-                ),
-              ]),
+              ),
+            ],
+          ),
         ),
       ],
     );
@@ -109,11 +107,13 @@ class CoinCardPrice extends StatelessWidget {
     String integerPart = partsOfPrice[0].replaceAllMapped(
         RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (match) => '${match[1]},');
     String formattedPrice =
-        '$integerPart.${partsOfPrice[1]}${String.fromCharCodes(Runes('\u0024'))}';
+        '${String.fromCharCodes(Runes('\u0024'))}$integerPart.${partsOfPrice[1]}';
 
     return Text(
       formattedPrice,
-      style: kQuestrialMedium.copyWith(color: Colors.white, fontSize: 18),
+      style: context.textStyles.body.copyWith(
+        color: context.colors.mainText,
+      ),
     );
   }
 }
@@ -143,18 +143,18 @@ class CoinCardPercentChange extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(5),
               color: percentStatus == PriceStatus.POSITIVE
-                  ? kDarkGreenColor
-                  : kRedDarkColor,
+                  ? context.colors.priceUpBackground
+                  : context.colors.priceDownBackground,
             ),
             child: Center(
               child: Text(
                 textAlign: TextAlign.center,
                 formattedPercent,
                 maxLines: 1,
-                style: kQuestrialMedium.copyWith(
+                style: context.textStyles.caption2.copyWith(
                   color: percentStatus == PriceStatus.POSITIVE
-                      ? kGreenColor
-                      : kRedColor,
+                      ? context.colors.priceUpText
+                      : context.colors.red,
                 ),
               ),
             ),

@@ -1,10 +1,9 @@
+import 'package:crypto_currency/core/extensions/build_context_extension.dart';
 import "package:flutter/material.dart";
 
 import 'package:crypto_currency/widgets/coin_card.dart';
 import 'package:crypto_currency/widgets/ranking_list_heading.dart';
 import 'ranking_screen_model.dart';
-
-import '../app_styles.dart';
 
 class RankingPage extends StatelessWidget {
   const RankingPage({super.key});
@@ -18,18 +17,14 @@ class RankingPage extends StatelessWidget {
     }
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: kBackgroundColor,
-        title: const Text(
+        backgroundColor: context.colors.background,
+        title: Text(
           'Ranking',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 32,
-            fontWeight: FontWeight.bold,
-          ),
+          style: context.textStyles.h4.copyWith(color: context.colors.mainText),
         ),
       ),
       body: Container(
-        color: kBackgroundColor,
+        color: context.colors.background,
         child: SafeArea(
           child: RefreshIndicator(
             onRefresh: () async {
@@ -44,7 +39,7 @@ class RankingPage extends StatelessWidget {
                         child: ListView.builder(
                           itemCount: model.cryptoCoins.length,
                           itemBuilder: (context, index) {
-                            return CoinCard(coin: model.cryptoCoins[index]); 
+                            return CoinCard(coin: model.cryptoCoins[index]);
                           },
                           controller: model.scrollController,
                         ),
@@ -55,8 +50,9 @@ class RankingPage extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
+        foregroundColor: context.colors.mainText,
         onPressed: model.refreshCryptoCoins,
-        backgroundColor: kBackgroundColor,
+        backgroundColor: context.colors.background,
         child: const Icon(Icons.refresh),
       ),
     );

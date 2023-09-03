@@ -34,6 +34,8 @@ class AppTheme {
       );
 
   static const ColorsPalette lightPalette = ColorsPalette(
+    prefixInputIcon: Colors.white50,
+    suffixInput: Colors.white50,
     mainText: Colors.dark,
     subText: Colors.dark70,
     background: Colors.white,
@@ -41,7 +43,7 @@ class AppTheme {
     inActiveBackground: Colors.white30,
     priceDownBackground: Colors.redLight,
     priceUpText: Colors.greenDark,
-    priceUpBackground: Colors.green,
+    priceUpBackground: Colors.greenLight,
     priceUpTradeText: Colors.greenBoldLight,
     white: Colors.white,
     white50: Colors.white50,
@@ -64,6 +66,8 @@ class AppTheme {
   );
 
   static const ColorsPalette darkPalette = ColorsPalette(
+    prefixInputIcon: Colors.white,
+    suffixInput: Colors.dark70,
     mainText: Colors.white,
     subText: Colors.white50,
     background: Colors.dark,

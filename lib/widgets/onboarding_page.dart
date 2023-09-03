@@ -1,5 +1,4 @@
-import 'package:crypto_currency/app_styles.dart';
-import 'package:crypto_currency/size_config.dart';
+import 'package:crypto_currency/core/extensions/build_context_extension.dart';
 import 'package:flutter/material.dart';
 
 class PageOfOnboarding extends StatelessWidget {
@@ -15,8 +14,6 @@ class PageOfOnboarding extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
-
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 30),
       child: Column(
@@ -36,23 +33,19 @@ class PageOfOnboarding extends StatelessWidget {
             child: Column(
               children: [
                 SizedBox(
-                  width: SizeConfig.blockSizeHorizontal! * 50,
                   child: Text(
                     title,
-                    style: kQuestrialBold.copyWith(
-                      fontSize: SizeConfig.blockSizeVertical! * 3,
-                      color: Colors.white,
+                    style: context.textStyles.h2.copyWith(
+                      color: context.colors.mainText,
                     ),
                   ),
                 ),
                 const SizedBox(height: 15.0),
                 SizedBox(
-                  width: SizeConfig.blockSizeHorizontal! * 50,
                   child: Text(
                     subtitle,
-                    style: kQuestrialMedium.copyWith(
-                      fontSize: SizeConfig.blockSizeVertical! * 2,
-                      color: Colors.white,
+                    style: context.textStyles.caption1.copyWith(
+                      color: context.colors.mainText,
                     ),
                   ),
                 ),

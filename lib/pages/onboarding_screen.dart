@@ -1,10 +1,10 @@
+import 'package:crypto_currency/core/extensions/build_context_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:crypto_currency/widgets/onboarding_bottomsheet.dart';
 import 'package:crypto_currency/widgets/onboarding_page.dart';
 import 'package:provider/provider.dart';
-import 'package:crypto_currency/app_styles.dart';
 
 class MyAppState extends ChangeNotifier {
   final int _numPages = 3;
@@ -39,7 +39,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
         body: AnnotatedRegion<SystemUiOverlayStyle>(
           value: SystemUiOverlayStyle.light,
           child: Container(
-            color: kBackgroundColor,
+            color: context.colors.background,
             child: SafeArea(
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 20),

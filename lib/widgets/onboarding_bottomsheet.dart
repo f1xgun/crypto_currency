@@ -1,8 +1,8 @@
+import 'package:crypto_currency/core/extensions/build_context_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'package:crypto_currency/app_styles.dart';
 import 'package:crypto_currency/main.dart';
 import 'package:crypto_currency/pages/login_screen.dart';
 import 'package:crypto_currency/pages/onboarding_screen.dart';
@@ -52,7 +52,7 @@ class _OnboardingBottomSheetWidgetState
 
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 30),
-      color: kBackgroundColor,
+      color: context.colors.background,
       width: double.infinity,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,

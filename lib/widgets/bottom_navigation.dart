@@ -1,4 +1,4 @@
-import 'package:crypto_currency/app_styles.dart';
+import 'package:crypto_currency/core/extensions/build_context_extension.dart';
 import 'package:crypto_currency/pages/main_screen_model.dart';
 import 'package:flutter/material.dart';
 
@@ -18,8 +18,11 @@ class BottomNavigationWidget extends StatelessWidget {
               label: e.label,
               activeIcon: ShaderMask(
                 shaderCallback: (Rect bounds) {
-                  return const LinearGradient(
-                    colors: <Color>[Color(0xff814EBB), Color(0xffff56bb)],
+                  return LinearGradient(
+                    colors: <Color>[
+                      context.colors.purpleDark,
+                      const Color(0xFFFF56BB),
+                    ],
                     begin: Alignment.bottomRight,
                     end: Alignment.topLeft,
                   ).createShader(bounds);
@@ -31,12 +34,12 @@ class BottomNavigationWidget extends StatelessWidget {
           .toList(),
       onTap: model.onChangePage,
       currentIndex: model.selectedPageIndex,
-      backgroundColor: kBackgroundColor,
+      backgroundColor: context.colors.background,
       mouseCursor: SystemMouseCursors.click,
       showSelectedLabels: false,
       showUnselectedLabels: false,
       iconSize: 32,
-      unselectedItemColor: Colors.grey,
+      unselectedItemColor: context.colors.white50,
       selectedItemColor: Colors.white,
     );
   }

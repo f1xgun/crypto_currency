@@ -1,3 +1,4 @@
+import 'package:crypto_currency/core/themes/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -24,9 +25,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Crypto Currency',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: AppTheme.darkTheme,
       home: seenOnboard == true ? const LoginPage() : const OnboardingPage(),
       routes: <String, WidgetBuilder>{
         '/login': (BuildContext context) => const LoginPage(),

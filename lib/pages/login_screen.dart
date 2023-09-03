@@ -1,9 +1,8 @@
+import 'package:crypto_currency/core/extensions/build_context_extension.dart';
 import 'package:crypto_currency/widgets/form_field.dart';
-import 'package:crypto_currency/widgets/icon_button.dart';
 import 'package:crypto_currency/widgets/outlined_button.dart';
 import 'package:flutter/material.dart';
 
-import '../app_styles.dart';
 import '../widgets/filled_button.dart';
 
 class LoginPage extends StatefulWidget {
@@ -18,7 +17,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: kBackgroundColor,
+        color: context.colors.background,
         child: SafeArea(
           child: Padding(
             padding:
@@ -27,20 +26,18 @@ class _LoginPageState extends State<LoginPage> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 const Spacer(),
-                const Expanded(
+                Expanded(
                   child: Text(
                     'Sign in',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 36,
-                      fontWeight: FontWeight.bold,
+                    style: context.textStyles.h2.copyWith(
+                      color: context.colors.mainText,
                     ),
                   ),
                 ),
-                Expanded(
+                const Expanded(
                   flex: 2,
                   child: Column(
-                    children: const [
+                    children: [
                       FieldOfForm(
                           text: 'Email address',
                           prefixIcon: Icons.email_outlined),
@@ -66,10 +63,8 @@ class _LoginPageState extends State<LoginPage> {
                       const SizedBox(height: 20),
                       Text(
                         'Forgot Password?',
-                        style: TextStyle(
-                          color: Colors.grey[700],
-                          fontSize: 14,
-                        ),
+                        style: context.textStyles.bold
+                            .copyWith(color: context.colors.dark70),
                         textAlign: TextAlign.center,
                       ),
                     ],
@@ -78,27 +73,28 @@ class _LoginPageState extends State<LoginPage> {
                 Expanded(
                   flex: 2,
                   child: Column(children: [
-                    const Text(
+                    Text(
                       'Or continue with',
-                      style: TextStyle(color: Colors.white, fontSize: 14),
+                      style: context.textStyles.caption1
+                          .copyWith(color: context.colors.mainText),
                       textAlign: TextAlign.center,
                     ),
-                    const SizedBox(height: 24),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      mainAxisSize: MainAxisSize.max,
-                      children: <Widget>[
-                        CustomIconButton(
-                          icon: Image.asset('assets/images/google.png'),
-                        ),
-                        CustomIconButton(
-                          icon: Image.asset('assets/images/apple.png'),
-                        ),
-                        CustomIconButton(
-                          icon: Image.asset('assets/images/facebook.png'),
-                        ),
-                      ],
-                    ),
+                    // const SizedBox(height: 24),
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    //   mainAxisSize: MainAxisSize.max,
+                    //   children: <Widget>[
+                    //     CustomIconButton(
+                    //       icon: Image.asset('assets/images/google.png'),
+                    //     ),
+                    //     CustomIconButton(
+                    //       icon: Image.asset('assets/images/apple.png'),
+                    //     ),
+                    //     CustomIconButton(
+                    //       icon: Image.asset('assets/images/facebook.png'),
+                    //     ),
+                    //   ],
+                    // ),
                   ]),
                 ),
                 Expanded(
@@ -108,16 +104,16 @@ class _LoginPageState extends State<LoginPage> {
                     padding: const EdgeInsets.symmetric(
                         horizontal: 30, vertical: 20),
                     width: double.infinity,
-                    color: kBackgroundColor,
+                    color: context.colors.background,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        const Text('Don\'t have an account?',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500),
-                            textAlign: TextAlign.center),
+                        Text(
+                          'Don\'t have an account?',
+                          style: context.textStyles.h4
+                              .copyWith(color: context.colors.mainText),
+                          textAlign: TextAlign.center,
+                        ),
                         const SizedBox(height: 15),
                         CustomOutlinedButton(onPressed: () {}, text: 'Sign up'),
                       ],
