@@ -4,10 +4,10 @@ class HomeScreenModel extends ChangeNotifier {}
 
 class HomeScreenProvider extends InheritedNotifier {
   const HomeScreenProvider({
-    Key? key,
-    required Widget child,
-    required HomeScreenModel notifier,
-  }) : super(key: key, child: child, notifier: notifier);
+    required super.child,
+    required HomeScreenModel super.notifier,
+    super.key,
+  });
 
   static HomeScreenProvider? watch(BuildContext context) {
     return context.dependOnInheritedWidgetOfExactType<HomeScreenProvider>();

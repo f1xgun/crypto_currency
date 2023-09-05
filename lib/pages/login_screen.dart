@@ -1,9 +1,8 @@
 import 'package:crypto_currency/core/extensions/build_context_extension.dart';
+import 'package:crypto_currency/widgets/filled_button.dart';
 import 'package:crypto_currency/widgets/form_field.dart';
 import 'package:crypto_currency/widgets/outlined_button.dart';
 import 'package:flutter/material.dart';
-
-import '../widgets/filled_button.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -16,12 +15,11 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
+      body: ColoredBox(
         color: context.colors.background,
         child: SafeArea(
           child: Padding(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 20.0, vertical: 40.0),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
@@ -109,7 +107,7 @@ class _LoginPageState extends State<LoginPage> {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         Text(
-                          'Don\'t have an account?',
+                          "Don't have an account?",
                           style: context.textStyles.h4
                               .copyWith(color: context.colors.mainText),
                           textAlign: TextAlign.center,

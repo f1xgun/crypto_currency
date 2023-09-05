@@ -2,8 +2,9 @@ import 'package:crypto_currency/core/extensions/build_context_extension.dart';
 import 'package:flutter/material.dart';
 
 class CustomIconButton extends StatelessWidget {
-  const CustomIconButton({super.key, required this.icon});
   final Image icon;
+
+  const CustomIconButton({required this.icon, super.key});
 
   @override
   Widget build(BuildContext context) {

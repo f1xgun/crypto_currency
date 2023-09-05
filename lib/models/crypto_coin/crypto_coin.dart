@@ -6,21 +6,21 @@ part 'crypto_coin.g.dart';
 
 @JsonSerializable()
 class CryptoCoin {
-  int id;
-  String name;
-  String symbol;
-  String slug;
-  int cmcRank;
-  int numMarketPairs;
-  double? circulatingSupply;
-  double? totalSupply;
-  double? maxSupply;
-  DateTime lastUpdated;
-  DateTime dateAdded;
-  Platform? platform;
-  Quote quote;
+  final int id;
+  final String name;
+  final String symbol;
+  final String slug;
+  final int cmcRank;
+  final int numMarketPairs;
+  final double? circulatingSupply;
+  final double? totalSupply;
+  final double? maxSupply;
+  final DateTime lastUpdated;
+  final DateTime dateAdded;
+  final Platform? platform;
+  final Quote quote;
 
-  CryptoCoin({
+  const CryptoCoin({
     required this.id,
     required this.name,
     required this.symbol,

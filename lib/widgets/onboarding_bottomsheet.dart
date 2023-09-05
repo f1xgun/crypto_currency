@@ -1,26 +1,24 @@
 import 'package:crypto_currency/core/extensions/build_context_extension.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
-import 'package:crypto_currency/main.dart';
 import 'package:crypto_currency/pages/login_screen.dart';
 import 'package:crypto_currency/pages/onboarding_screen.dart';
 import 'package:crypto_currency/widgets/filled_button.dart';
 import 'package:crypto_currency/widgets/indicator.dart';
 import 'package:crypto_currency/widgets/outlined_button.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class OnboardingBottomSheetWidget extends StatefulWidget {
-  const OnboardingBottomSheetWidget({
-    super.key,
-    required this.isLast,
-    required this.pageController,
-    required this.currentPage,
-  });
-
   final bool isLast;
   final PageController pageController;
   final int currentPage;
+
+  const OnboardingBottomSheetWidget({
+    required this.isLast,
+    required this.pageController,
+    required this.currentPage,
+    super.key,
+  });
 
   @override
   State<OnboardingBottomSheetWidget> createState() =>
@@ -29,18 +27,18 @@ class OnboardingBottomSheetWidget extends StatefulWidget {
 
 class _OnboardingBottomSheetWidgetState
     extends State<OnboardingBottomSheetWidget> {
-  Future setSeenonboard() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    seenOnboard = await prefs.setBool('seenOnboard', true);
+  Future<void> setSeenonboard() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('seenOnboard', true);
   }
 
   @override
   Widget build(BuildContext context) {
-    var appState = context.watch<MyAppState>();
+    final appState = context.watch<MyAppState>();
 
     List<Widget> buildPageIndicator() {
-      List<Widget> list = [];
-      for (int i = 0; i < appState.numPages; i++) {
+      final list = <Widget>[];
+      for (var i = 0; i < appState.numPages; i++) {
         list.add(
           i == widget.currentPage
               ? const Indicator(isActive: true)

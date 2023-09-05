@@ -8,7 +8,7 @@ class BottomNavigationWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final model =
-        MainScreenProvider.watch(context)!.notifier as MainScreenModel;
+        MainScreenProvider.watch(context)!.notifier! as MainScreenModel;
 
     return BottomNavigationBar(
       items: model.pagesBottomBar
@@ -17,7 +17,7 @@ class BottomNavigationWidget extends StatelessWidget {
               icon: e.icon,
               label: e.label,
               activeIcon: ShaderMask(
-                shaderCallback: (Rect bounds) {
+                shaderCallback: (bounds) {
                   return LinearGradient(
                     colors: <Color>[
                       context.colors.purpleDark,

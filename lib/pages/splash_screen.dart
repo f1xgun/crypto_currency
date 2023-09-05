@@ -1,10 +1,9 @@
 import 'dart:async';
 
 import 'package:crypto_currency/core/extensions/build_context_extension.dart';
+import 'package:crypto_currency/main.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import 'package:crypto_currency/main.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -15,15 +14,15 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   @override
-  void initState() async {
+  Future<void> initState() async {
     super.initState();
-    SharedPreferences pref = await SharedPreferences.getInstance();
-    seenOnboard = pref.getBool('seenOnboard') ?? false;
+    final SharedPreferences pref = await SharedPreferences.getInstance();
+    final bool seenOnboard = pref.getBool('seenOnboard') ?? false;
     Timer(
       const Duration(seconds: 1),
       () => Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (BuildContext context) => const MyApp(),
+          builder: (context) => MyApp(seenOnboard: seenOnboard),
         ),
       ),
     );
@@ -31,8 +30,8 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+    final double height = MediaQuery.of(context).size.height;
+    final double width = MediaQuery.of(context).size.width;
     return SafeArea(
       child: Scaffold(
         body: Container(

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class CustomFilledButton extends StatelessWidget {
   const CustomFilledButton(
-      {super.key, required this.onPressed, required this.text});
+      {required this.onPressed, required this.text, super.key});
 
   final String text;
   final VoidCallback onPressed;
@@ -18,8 +18,8 @@ class CustomFilledButton extends StatelessWidget {
         ),
         backgroundColor: MaterialStateProperty.all(context.colors.purpleDark),
         side: const MaterialStatePropertyAll(BorderSide.none),
-        shape: const MaterialStatePropertyAll(RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(5)))),
+        shape: MaterialStatePropertyAll(
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(5))),
       ),
       child: Text(
         text,

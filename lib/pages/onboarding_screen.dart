@@ -1,9 +1,8 @@
 import 'package:crypto_currency/core/extensions/build_context_extension.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
 import 'package:crypto_currency/widgets/onboarding_bottomsheet.dart';
 import 'package:crypto_currency/widgets/onboarding_page.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 class MyAppState extends ChangeNotifier {
@@ -21,7 +20,7 @@ class OnboardingPage extends StatefulWidget {
 
 class _OnboardingPageState extends State<OnboardingPage> {
   int _currentPage = 0;
-  final PageController _pageController = PageController(initialPage: 0);
+  final PageController _pageController = PageController();
 
   @override
   void initState() {
@@ -38,7 +37,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
       child: Scaffold(
         body: AnnotatedRegion<SystemUiOverlayStyle>(
           value: SystemUiOverlayStyle.light,
-          child: Container(
+          child: ColoredBox(
             color: context.colors.background,
             child: SafeArea(
               child: Padding(
@@ -51,7 +50,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                       child: PageView(
                         physics: const ClampingScrollPhysics(),
                         controller: _pageController,
-                        onPageChanged: (int page) {
+                        onPageChanged: (page) {
                           setState(() {
                             _currentPage = page;
                           });
@@ -59,19 +58,19 @@ class _OnboardingPageState extends State<OnboardingPage> {
                         children: const <Widget>[
                           PageOfOnboarding(
                               urlImage: 'coins',
-                              title: "All your crypto in one place",
+                              title: 'All your crypto in one place',
                               subtitle:
-                                  "Already any coin and token on Cryptostone"),
+                                  'Already any coin and token on Cryptostone'),
                           PageOfOnboarding(
                               urlImage: 'cryptowallet',
-                              title: "Buy and Sell Your Crypto",
+                              title: 'Buy and Sell Your Crypto',
                               subtitle:
-                                  "Easy buy and sell crypto on cryptostore"),
+                                  'Easy buy and sell crypto on cryptostore'),
                           PageOfOnboarding(
                               urlImage: 'exchange',
-                              title: "Security System for your wallet",
+                              title: 'Security System for your wallet',
                               subtitle:
-                                  "Guarantee for security on cryptostore"),
+                                  'Guarantee for security on cryptostore'),
                         ],
                       ),
                     ),

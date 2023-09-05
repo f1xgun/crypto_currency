@@ -4,14 +4,14 @@ part 'quote.g.dart';
 
 @JsonSerializable()
 class Quote {
-  double price;
-  double volume24H;
-  double marketCap;
-  double percentChange1H;
-  double percentChange24H;
-  double percentChange7D;
-  DateTime lastUpdated;
-  Quote({
+  final double price;
+  final double volume24H;
+  final double marketCap;
+  final double percentChange1H;
+  final double percentChange24H;
+  final double percentChange7D;
+  final DateTime lastUpdated;
+  const Quote({
       required this.price,
       required this.volume24H,
       required this.marketCap,

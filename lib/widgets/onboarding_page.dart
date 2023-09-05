@@ -2,15 +2,16 @@ import 'package:crypto_currency/core/extensions/build_context_extension.dart';
 import 'package:flutter/material.dart';
 
 class PageOfOnboarding extends StatelessWidget {
-  const PageOfOnboarding(
-      {super.key,
-      required this.urlImage,
-      required this.title,
-      required this.subtitle});
-
   final String urlImage;
   final String title;
   final String subtitle;
+
+  const PageOfOnboarding({
+    required this.urlImage,
+    required this.title,
+    required this.subtitle,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +32,7 @@ class PageOfOnboarding extends StatelessWidget {
           ),
           Expanded(
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
                   child: Text(
@@ -40,7 +42,7 @@ class PageOfOnboarding extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 15.0),
+                const SizedBox(height: 15),
                 SizedBox(
                   child: Text(
                     subtitle,

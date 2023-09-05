@@ -8,7 +8,7 @@ class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final model =
-        MainScreenProvider.watch(context)!.notifier as MainScreenModel;
+        MainScreenProvider.watch(context)!.notifier! as MainScreenModel;
 
     return Scaffold(
       body: PageView.builder(

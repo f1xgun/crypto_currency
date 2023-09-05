@@ -1,12 +1,9 @@
-// ignore_for_file: constant_identifier_names
-
 import 'package:crypto_currency/core/extensions/build_context_extension.dart';
+import 'package:crypto_currency/models/crypto_coin/crypto_coin.dart';
 import 'package:flutter/material.dart';
 
-import 'package:crypto_currency/models/crypto_coin/crypto_coin.dart';
-
 class CoinCard extends StatelessWidget {
-  const CoinCard({super.key, required this.coin});
+  const CoinCard({required this.coin, super.key});
   final CryptoCoin coin;
 
   @override
@@ -29,7 +26,6 @@ class CoinCard extends StatelessWidget {
           ),
           Expanded(flex: 2, child: CoinCardPrice(price: coin.quote.price)),
           Expanded(
-              flex: 1,
               child: CoinCardPercentChange(percent: coin.quote.percentChange1H))
         ],
       ),
@@ -38,7 +34,7 @@ class CoinCard extends StatelessWidget {
 }
 
 class CoinCardLeading extends StatelessWidget {
-  const CoinCardLeading({super.key, required this.coinId});
+  const CoinCardLeading({required this.coinId, super.key});
   final int coinId;
 
   @override
@@ -53,22 +49,21 @@ class CoinCardLeading extends StatelessWidget {
 }
 
 class CoinCardName extends StatelessWidget {
-  const CoinCardName({super.key, required this.name, required this.symbol});
+  const CoinCardName({required this.name, required this.symbol, super.key});
   final String name;
   final String symbol;
 
   @override
   Widget build(BuildContext context) {
-    String formattedName = name;
+    var formattedName = name;
     if (name.length > 10) {
-      List<String> partsOfName = name.split(' ');
+      final partsOfName = name.split(' ');
       formattedName = partsOfName.length == 1
           ? name.substring(6)
           : partsOfName.map((part) => part[0]).join();
     }
 
     return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         RichText(
           text: TextSpan(
@@ -98,15 +93,15 @@ class CoinCardName extends StatelessWidget {
 }
 
 class CoinCardPrice extends StatelessWidget {
-  const CoinCardPrice({super.key, required this.price});
+  const CoinCardPrice({required this.price, super.key});
   final double price;
 
   @override
   Widget build(BuildContext context) {
-    List<String> partsOfPrice = price.toStringAsFixed(2).split('.');
-    String integerPart = partsOfPrice[0].replaceAllMapped(
+    final partsOfPrice = price.toStringAsFixed(2).split('.');
+    final integerPart = partsOfPrice[0].replaceAllMapped(
         RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (match) => '${match[1]},');
-    String formattedPrice =
+    final formattedPrice =
         '${String.fromCharCodes(Runes('\u0024'))}$integerPart.${partsOfPrice[1]}';
 
     return Text(
@@ -118,31 +113,31 @@ class CoinCardPrice extends StatelessWidget {
   }
 }
 
-enum PriceStatus { POSITIVE, SAME, NEGATIVE }
+enum PriceStatus { positive, same, negative }
 
 class CoinCardPercentChange extends StatelessWidget {
-  const CoinCardPercentChange({super.key, required this.percent});
+  const CoinCardPercentChange({required this.percent, super.key});
   final double percent;
 
   PriceStatus getPriceStatus(double percent) {
-    if (percent > 0) return PriceStatus.POSITIVE;
-    if (percent == 0) return PriceStatus.SAME;
-    return PriceStatus.NEGATIVE;
+    if (percent > 0) return PriceStatus.positive;
+    if (percent == 0) return PriceStatus.same;
+    return PriceStatus.negative;
   }
 
   @override
   Widget build(BuildContext context) {
-    double newPercent = double.parse(percent.toStringAsFixed(2));
-    PriceStatus percentStatus = getPriceStatus(newPercent);
-    String formattedPercent =
-        '${percentStatus == PriceStatus.POSITIVE ? '+' : ''}$newPercent%';
+    final newPercent = double.parse(percent.toStringAsFixed(2));
+    final percentStatus = getPriceStatus(newPercent);
+    final formattedPercent =
+        '${percentStatus == PriceStatus.positive ? '+' : ''}$newPercent%';
 
-    return percentStatus != PriceStatus.SAME
+    return percentStatus != PriceStatus.same
         ? Container(
             padding: const EdgeInsets.symmetric(vertical: 10),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(5),
-              color: percentStatus == PriceStatus.POSITIVE
+              color: percentStatus == PriceStatus.positive
                   ? context.colors.priceUpBackground
                   : context.colors.priceDownBackground,
             ),
@@ -152,7 +147,7 @@ class CoinCardPercentChange extends StatelessWidget {
                 formattedPercent,
                 maxLines: 1,
                 style: context.textStyles.caption2.copyWith(
-                  color: percentStatus == PriceStatus.POSITIVE
+                  color: percentStatus == PriceStatus.positive
                       ? context.colors.priceUpText
                       : context.colors.red,
                 ),

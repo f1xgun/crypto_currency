@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 
 class MainScreenModel extends ChangeNotifier {
   int _selectedPageIndex = 0;
-  final PageController _pageController = PageController(initialPage: 0);
+  final PageController _pageController = PageController();
 
   int get selectedPageIndex => _selectedPageIndex;
   PageController get pageController => _pageController;
@@ -38,10 +38,10 @@ class MainScreenModel extends ChangeNotifier {
 
 class MainScreenProvider extends InheritedNotifier {
   const MainScreenProvider({
-    Key? key,
-    required Widget child,
-    required MainScreenModel notifier,
-  }) : super(key: key, child: child, notifier: notifier);
+    required super.child,
+    required MainScreenModel super.notifier,
+    super.key,
+  });
 
   static MainScreenProvider? watch(BuildContext context) {
     return context.dependOnInheritedWidgetOfExactType<MainScreenProvider>();

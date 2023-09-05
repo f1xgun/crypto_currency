@@ -2,11 +2,15 @@ import 'package:crypto_currency/core/extensions/build_context_extension.dart';
 import 'package:flutter/material.dart';
 
 class CustomOutlinedButton extends StatelessWidget {
-  const CustomOutlinedButton(
-      {super.key, required this.onPressed, required this.text});
-
   final String text;
   final VoidCallback onPressed;
+  
+  const CustomOutlinedButton({
+    required this.onPressed,
+    required this.text,
+    super.key,
+  });
+
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +23,8 @@ class CustomOutlinedButton extends StatelessWidget {
         side: MaterialStateProperty.all(
           BorderSide(color: context.colors.purpleDark),
         ),
-        shape: const MaterialStatePropertyAll(RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(5)))),
+        shape: MaterialStatePropertyAll(
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(5))),
       ),
       child: Text(
         text,

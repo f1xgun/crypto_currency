@@ -1,6 +1,6 @@
+import 'package:crypto_currency/models/crypto_coin/crypto_coin.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:crypto_currency/models/crypto_coin/crypto_coin.dart';
 
 class RankingScreenModel extends ChangeNotifier {
   final List<CryptoCoin> _cryptoCoins = [];
@@ -28,41 +28,42 @@ class RankingScreenModel extends ChangeNotifier {
     super.dispose();
   }
 
-  void getCryptoCoins([int? begin, int? end]) async {
+  Future<void> getCryptoCoins([int? begin, int? end]) async {
     final dio = Dio();
     _isLoading = true;
     try {
-      dio
+      await dio
           .get(
-            "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?start=${begin ?? 1}&limit=${end ?? 10}&convert=USD",
+            'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?start=${begin ?? 1}&limit=${end ?? 10}&convert=USD',
             options: Options(
               headers: {
-                "X-CMC_PRO_API_KEY": "6bc8ae01-d189-45fd-8b3e-3ffa6a91bced",
-                "Accept": "application/json",
-                "Access-Control-Allow-Headers": '*',
+                'X-CMC_PRO_API_KEY': '6bc8ae01-d189-45fd-8b3e-3ffa6a91bced',
+                'Accept': 'application/json',
+                'Access-Control-Allow-Headers': '*',
                 'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Credentials': "true",
+                'Access-Control-Allow-Credentials': 'true',
               },
             ),
           )
-          .then((value) => createCryptoCoins(value.data["data"]));
-    } catch (e) {
-      throw Exception("Failed to load data");
+          .then((value) => createCryptoCoins((value.data
+              as Map<String, dynamic>)['data'] as List<Map<String, dynamic>>));
+    } on Object {
+      throw Exception('Failed to load data');
     }
   }
 
-  void createCryptoCoins(dynamic data) {
-    for (var coin in data) {
+  void createCryptoCoins(List<Map<String, dynamic>> data) {
+    for (final coin in data) {
       _cryptoCoins.add(CryptoCoin.fromJson(coin));
     }
     _isLoading = false;
     notifyListeners();
   }
 
-  void refreshCryptoCoins() async {
-    int length = _cryptoCoins.length;
+  Future<void> refreshCryptoCoins() async {
+    final length = _cryptoCoins.length;
     _cryptoCoins.clear();
-    getCryptoCoins(1, length);
+    await getCryptoCoins(1, length);
     notifyListeners();
   }
 
@@ -73,10 +74,10 @@ class RankingScreenModel extends ChangeNotifier {
 
 class RankingScreenProvider extends InheritedNotifier {
   const RankingScreenProvider({
-    Key? key,
-    required Widget child,
-    required RankingScreenModel notifier,
-  }) : super(key: key, child: child, notifier: notifier);
+    required super.child,
+    required RankingScreenModel super.notifier,
+    super.key,
+  });
 
   static RankingScreenProvider? watch(BuildContext context) {
     return context.dependOnInheritedWidgetOfExactType<RankingScreenProvider>();

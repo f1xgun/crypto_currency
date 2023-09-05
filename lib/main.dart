@@ -1,39 +1,41 @@
 import 'package:crypto_currency/core/themes/app_theme.dart';
+import 'package:crypto_currency/pages/login_screen.dart';
+import 'package:crypto_currency/pages/main_screen.dart';
+import 'package:crypto_currency/pages/main_screen_model.dart';
+import 'package:crypto_currency/pages/onboarding_screen.dart';
+import 'package:crypto_currency/pages/ranking_screen.dart';
+import 'package:crypto_currency/pages/ranking_screen_model.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'package:crypto_currency/pages/login_screen.dart';
-import 'package:crypto_currency/pages/onboarding_screen.dart';
-import 'package:crypto_currency/pages/main_screen.dart';
-import 'package:crypto_currency/pages/main_screen_model.dart';
-import 'package:crypto_currency/pages/ranking_screen.dart';
-import 'package:crypto_currency/pages/ranking_screen_model.dart';
-
-bool? seenOnboard;
-
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  SharedPreferences pref = await SharedPreferences.getInstance();
-  seenOnboard = pref.getBool('seenOnboard') ?? false;
-  runApp(const MyApp());
+  final SharedPreferences pref = await SharedPreferences.getInstance();
+  final bool seenOnboard = pref.getBool('seenOnboard') ?? false;
+  runApp(MyApp(seenOnboard: seenOnboard));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final bool seenOnboard;
+
+  const MyApp({
+    required this.seenOnboard,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Crypto Currency',
       theme: AppTheme.darkTheme,
-      home: seenOnboard == true ? const LoginPage() : const OnboardingPage(),
+      home: seenOnboard ? const LoginPage() : const OnboardingPage(),
       routes: <String, WidgetBuilder>{
-        '/login': (BuildContext context) => const LoginPage(),
-        '/ranking': (BuildContext context) => RankingScreenProvider(
+        '/login': (context) => const LoginPage(),
+        '/ranking': (context) => RankingScreenProvider(
               notifier: RankingScreenModel(),
               child: const RankingPage(),
             ),
-        '/home': (BuildContext context) => MainScreenProvider(
+        '/home': (context) => MainScreenProvider(
               notifier: MainScreenModel(),
               child: const MainScreen(),
             ),

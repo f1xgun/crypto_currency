@@ -2,8 +2,12 @@ import 'package:crypto_currency/core/extensions/build_context_extension.dart';
 import 'package:flutter/material.dart';
 
 class Indicator extends StatefulWidget {
-  const Indicator({super.key, required this.isActive});
   final bool isActive;
+  
+  const Indicator({
+    required this.isActive,
+    super.key,
+  });
 
   @override
   State<Indicator> createState() => _IndicatorState();
