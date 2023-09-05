@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:crypto_currency/core/logger/logger.dart';
 import 'package:crypto_currency/core/themes/app_theme.dart';
 import 'package:crypto_currency/pages/login_screen.dart';
 import 'package:crypto_currency/pages/main_screen.dart';
@@ -8,11 +11,15 @@ import 'package:crypto_currency/pages/ranking_screen_model.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  final SharedPreferences pref = await SharedPreferences.getInstance();
-  final bool seenOnboard = pref.getBool('seenOnboard') ?? false;
-  runApp(MyApp(seenOnboard: seenOnboard));
+void main() {
+  runZonedGuarded(() async {
+    WidgetsFlutterBinding.ensureInitialized();
+    final SharedPreferences pref = await SharedPreferences.getInstance();
+    final bool seenOnboard = pref.getBool('seenOnboard') ?? false;
+    runApp(MyApp(seenOnboard: seenOnboard));
+  }, (error, stack) {
+    logger.error(error.toString(), error, stack);
+  });
 }
 
 class MyApp extends StatelessWidget {
