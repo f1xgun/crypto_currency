@@ -12,6 +12,7 @@ class CoinDTO with _$CoinDTO {
     required double highPrice,
     @JsonKey(name: 'price_change_percent_24h')
     required double priceChangePercent24h,
+    @JsonKey(name: 'image_url')
     String? imageUrl,
   }) = _CoinDTO;
 
