@@ -16,8 +16,11 @@ class HomePage extends StatelessWidget {
           ),
         ),
       ),
-      body: const Center(
-        child: Text('Home'),
+      body: ColoredBox(
+        color: context.colors.background,
+        child: const Center(
+          child: Text('Home'),
+        ),
       ),
     );
   }

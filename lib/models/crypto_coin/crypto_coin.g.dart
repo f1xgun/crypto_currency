@@ -21,8 +21,7 @@ CryptoCoin _$CryptoCoinFromJson(Map<String, dynamic> json) => CryptoCoin(
       platform: json['platform'] == null
           ? null
           : Platform.fromJson(json['platform'] as Map<String, dynamic>),
-      // ignore: avoid_dynamic_calls
-      quote: Quote.fromJson(json['quote']['USD'] as Map<String, dynamic>),
+      quote: Quote.fromJson(json['quote'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$CryptoCoinToJson(CryptoCoin instance) =>

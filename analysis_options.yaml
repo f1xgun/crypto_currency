@@ -23,6 +23,7 @@ analyzer:
     control_flow_in_finally: error
     empty_statements: error
     hash_and_equals: error
+    invalid_annotation_target: ignore
     iterable_contains_unrelated_type: error
     list_remove_unrelated_type: error
     literal_only_boolean_expressions: error
