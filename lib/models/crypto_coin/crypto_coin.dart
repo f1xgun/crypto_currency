@@ -4,7 +4,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'crypto_coin.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class CryptoCoin {
   final int id;
   final String name;

@@ -15,6 +15,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: ColoredBox(
         color: context.colors.background,
         child: SafeArea(
@@ -32,21 +33,16 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 ),
-                const Expanded(
-                  flex: 2,
-                  child: Column(
-                    children: [
-                      FieldOfForm(
-                          text: 'Email address',
-                          prefixIcon: Icons.email_outlined),
-                      SizedBox(height: 10),
-                      FieldOfForm(
-                        text: 'Password',
-                        prefixIcon: Icons.security_outlined,
-                        suffixIcon: Icons.visibility_off_outlined,
-                      ),
-                    ],
-                  ),
+                const FieldOfForm(
+                    text: 'Email address', prefixIcon: Icons.email_outlined),
+                const SizedBox(height: 10),
+                const FieldOfForm(
+                  text: 'Password',
+                  prefixIcon: Icons.security_outlined,
+                  suffixIcon: Icons.visibility_off_outlined,
+                ),
+                const SizedBox(
+                  height: 28,
                 ),
                 Expanded(
                   flex: 2,
@@ -68,56 +64,41 @@ class _LoginPageState extends State<LoginPage> {
                     ],
                   ),
                 ),
-                Expanded(
-                  flex: 2,
-                  child: Column(children: [
-                    Text(
-                      'Or continue with',
-                      style: context.textStyles.caption1
-                          .copyWith(color: context.colors.mainText),
-                      textAlign: TextAlign.center,
-                    ),
-                    // const SizedBox(height: 24),
-                    // Row(
-                    //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    //   mainAxisSize: MainAxisSize.max,
-                    //   children: <Widget>[
-                    //     CustomIconButton(
-                    //       icon: Image.asset('assets/images/google.png'),
-                    //     ),
-                    //     CustomIconButton(
-                    //       icon: Image.asset('assets/images/apple.png'),
-                    //     ),
-                    //     CustomIconButton(
-                    //       icon: Image.asset('assets/images/facebook.png'),
-                    //     ),
-                    //   ],
-                    // ),
-                  ]),
+                // Expanded(
+                //   flex: 2,
+                //   child: Column(children: [
+                //     Text(
+                //       'Or continue with',
+                //       style: context.textStyles.caption1
+                //           .copyWith(color: context.colors.mainText),
+                //       textAlign: TextAlign.center,
+                //     ),
+                // const SizedBox(height: 24),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                //   mainAxisSize: MainAxisSize.max,
+                //   children: <Widget>[
+                //     CustomIconButton(
+                //       icon: Image.asset('assets/images/google.png'),
+                //     ),
+                //     CustomIconButton(
+                //       icon: Image.asset('assets/images/apple.png'),
+                //     ),
+                //     CustomIconButton(
+                //       icon: Image.asset('assets/images/facebook.png'),
+                //     ),
+                //   ],
+                // ),
+                //   ]),
+                // ),
+                Text(
+                  "Don't have an account?",
+                  style: context.textStyles.h4
+                      .copyWith(color: context.colors.mainText),
+                  textAlign: TextAlign.center,
                 ),
-                Expanded(
-                  flex: 2,
-                  child: Container(
-                    height: MediaQuery.of(context).size.height * 0.2,
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 30, vertical: 20),
-                    width: double.infinity,
-                    color: context.colors.background,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        Text(
-                          "Don't have an account?",
-                          style: context.textStyles.h4
-                              .copyWith(color: context.colors.mainText),
-                          textAlign: TextAlign.center,
-                        ),
-                        const SizedBox(height: 15),
-                        CustomOutlinedButton(onPressed: () {}, text: 'Sign up'),
-                      ],
-                    ),
-                  ),
-                ),
+                const SizedBox(height: 15),
+                CustomOutlinedButton(onPressed: () {}, text: 'Sign up'),
               ],
             ),
           ),

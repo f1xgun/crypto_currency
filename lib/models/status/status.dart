@@ -2,7 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'status.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class Status {
   DateTime timestamp;
   int errorCode;

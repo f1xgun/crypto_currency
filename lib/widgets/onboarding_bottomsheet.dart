@@ -79,7 +79,7 @@ class _OnboardingBottomSheetWidgetState
           ),
           CustomOutlinedButton(
             onPressed: () {
-              if (widget.isLast) setSeenonboard();
+              setSeenonboard();
               Navigator.of(context).pushReplacement(
                 MaterialPageRoute(
                   builder: (context) => const LoginPage(),

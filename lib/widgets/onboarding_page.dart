@@ -27,6 +27,7 @@ class PageOfOnboarding extends StatelessWidget {
                 'assets/images/onboarding_screen/$urlImage.png',
                 width: 300,
                 height: 300,
+                fit: BoxFit.contain,
               ),
             ),
           ),
@@ -42,7 +43,7 @@ class PageOfOnboarding extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 15),
+                const SizedBox(height: 30),
                 SizedBox(
                   child: Text(
                     subtitle,

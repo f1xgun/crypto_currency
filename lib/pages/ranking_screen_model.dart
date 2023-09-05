@@ -45,10 +45,11 @@ class RankingScreenModel extends ChangeNotifier {
               },
             ),
           )
-          .then((value) => createCryptoCoins((value.data
-              as Map<String, dynamic>)['data'] as List<Map<String, dynamic>>));
-    } on Object {
-      throw Exception('Failed to load data');
+          .then((value) => createCryptoCoins(
+              ((value.data as Map<String, dynamic>)['data'] as List<dynamic>)
+                  .cast<Map<String, dynamic>>()));
+    } on Object catch (e) {
+      throw Exception('Failed to load data $e');
     }
   }
 

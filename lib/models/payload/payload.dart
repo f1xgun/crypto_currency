@@ -4,7 +4,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'payload.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class Payload {
   Status status;
   List<CryptoCoin> data;

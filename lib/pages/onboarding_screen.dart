@@ -80,7 +80,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                         pageController: _pageController,
                         currentPage: _currentPage,
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),

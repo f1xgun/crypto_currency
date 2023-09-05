@@ -2,7 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'coin_platform.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class Platform {
   int id;
   String name;
