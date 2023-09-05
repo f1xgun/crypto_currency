@@ -30,11 +30,11 @@ void main() {
         priceChangePercent24h: -5.24)
   ];
   group('Coin mapper', () {
-    test('First map', () {
+    test('Map #1', () {
       expect(CoinMapper.fromDTO(coinsDTO[0]), coins[0]);
     });
 
-    test('Second map', () {
+    test('Map #2', () {
       expect(CoinMapper.fromDTO(coinsDTO[1]), coins[1]);
     });
   });

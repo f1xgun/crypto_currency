@@ -1,1 +1,1 @@
-enum OrderType { buy, sell }
+enum OrderType { buy, sell, none }

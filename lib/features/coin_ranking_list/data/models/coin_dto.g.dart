@@ -12,7 +12,7 @@ _$_CoinDTO _$$_CoinDTOFromJson(Map<String, dynamic> json) => _$_CoinDTO(
       highPrice: (json['high_price'] as num).toDouble(),
       priceChangePercent24h:
           (json['price_change_percent_24h'] as num).toDouble(),
-      imageUrl: json['imageUrl'] as String?,
+      imageUrl: json['image_url'] as String?,
     );
 
 Map<String, dynamic> _$$_CoinDTOToJson(_$_CoinDTO instance) =>
@@ -21,5 +21,5 @@ Map<String, dynamic> _$$_CoinDTOToJson(_$_CoinDTO instance) =>
       'price': instance.price,
       'high_price': instance.highPrice,
       'price_change_percent_24h': instance.priceChangePercent24h,
-      'imageUrl': instance.imageUrl,
+      'image_url': instance.imageUrl,
     };

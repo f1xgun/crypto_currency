@@ -26,6 +26,7 @@ mixin _$CoinDTO {
   double get highPrice => throw _privateConstructorUsedError;
   @JsonKey(name: 'price_change_percent_24h')
   double get priceChangePercent24h => throw _privateConstructorUsedError;
+  @JsonKey(name: 'image_url')
   String? get imageUrl => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -43,7 +44,7 @@ abstract class $CoinDTOCopyWith<$Res> {
       double price,
       @JsonKey(name: 'high_price') double highPrice,
       @JsonKey(name: 'price_change_percent_24h') double priceChangePercent24h,
-      String? imageUrl});
+      @JsonKey(name: 'image_url') String? imageUrl});
 }
 
 /// @nodoc
@@ -102,7 +103,7 @@ abstract class _$$_CoinDTOCopyWith<$Res> implements $CoinDTOCopyWith<$Res> {
       double price,
       @JsonKey(name: 'high_price') double highPrice,
       @JsonKey(name: 'price_change_percent_24h') double priceChangePercent24h,
-      String? imageUrl});
+      @JsonKey(name: 'image_url') String? imageUrl});
 }
 
 /// @nodoc
@@ -155,7 +156,7 @@ class _$_CoinDTO implements _CoinDTO {
       @JsonKey(name: 'high_price') required this.highPrice,
       @JsonKey(name: 'price_change_percent_24h')
       required this.priceChangePercent24h,
-      this.imageUrl});
+      @JsonKey(name: 'image_url') this.imageUrl});
 
   factory _$_CoinDTO.fromJson(Map<String, dynamic> json) =>
       _$$_CoinDTOFromJson(json);
@@ -171,6 +172,7 @@ class _$_CoinDTO implements _CoinDTO {
   @JsonKey(name: 'price_change_percent_24h')
   final double priceChangePercent24h;
   @override
+  @JsonKey(name: 'image_url')
   final String? imageUrl;
 
   @override
@@ -219,7 +221,7 @@ abstract class _CoinDTO implements CoinDTO {
       @JsonKey(name: 'high_price') required final double highPrice,
       @JsonKey(name: 'price_change_percent_24h')
       required final double priceChangePercent24h,
-      final String? imageUrl}) = _$_CoinDTO;
+      @JsonKey(name: 'image_url') final String? imageUrl}) = _$_CoinDTO;
 
   factory _CoinDTO.fromJson(Map<String, dynamic> json) = _$_CoinDTO.fromJson;
 
@@ -234,6 +236,7 @@ abstract class _CoinDTO implements CoinDTO {
   @JsonKey(name: 'price_change_percent_24h')
   double get priceChangePercent24h;
   @override
+  @JsonKey(name: 'image_url')
   String? get imageUrl;
   @override
   @JsonKey(ignore: true)

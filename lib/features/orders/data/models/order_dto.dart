@@ -11,7 +11,7 @@ class OrderDTO with _$OrderDTO {
     required String coinSymbol,
     required double amount,
     required double price,
-    required DateTime date,
+    required String date,
   }) = _OrderDTO;
 
   factory OrderDTO.fromJson(Map<String, dynamic> json) =>

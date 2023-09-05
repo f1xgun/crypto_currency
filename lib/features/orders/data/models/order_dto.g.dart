@@ -11,7 +11,7 @@ _$_OrderDTO _$$_OrderDTOFromJson(Map<String, dynamic> json) => _$_OrderDTO(
       coinSymbol: json['coin_symbol'] as String,
       amount: (json['amount'] as num).toDouble(),
       price: (json['price'] as num).toDouble(),
-      date: DateTime.parse(json['date'] as String),
+      date: json['date'] as String,
     );
 
 Map<String, dynamic> _$$_OrderDTOToJson(_$_OrderDTO instance) =>
@@ -20,5 +20,5 @@ Map<String, dynamic> _$$_OrderDTOToJson(_$_OrderDTO instance) =>
       'coin_symbol': instance.coinSymbol,
       'amount': instance.amount,
       'price': instance.price,
-      'date': instance.date.toIso8601String(),
+      'date': instance.date,
     };

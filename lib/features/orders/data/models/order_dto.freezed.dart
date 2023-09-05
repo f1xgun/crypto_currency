@@ -25,7 +25,7 @@ mixin _$OrderDTO {
   String get coinSymbol => throw _privateConstructorUsedError;
   double get amount => throw _privateConstructorUsedError;
   double get price => throw _privateConstructorUsedError;
-  DateTime get date => throw _privateConstructorUsedError;
+  String get date => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -43,7 +43,7 @@ abstract class $OrderDTOCopyWith<$Res> {
       @JsonKey(name: 'coin_symbol') String coinSymbol,
       double amount,
       double price,
-      DateTime date});
+      String date});
 }
 
 /// @nodoc
@@ -85,7 +85,7 @@ class _$OrderDTOCopyWithImpl<$Res, $Val extends OrderDTO>
       date: null == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as String,
     ) as $Val);
   }
 }
@@ -102,7 +102,7 @@ abstract class _$$_OrderDTOCopyWith<$Res> implements $OrderDTOCopyWith<$Res> {
       @JsonKey(name: 'coin_symbol') String coinSymbol,
       double amount,
       double price,
-      DateTime date});
+      String date});
 }
 
 /// @nodoc
@@ -142,7 +142,7 @@ class __$$_OrderDTOCopyWithImpl<$Res>
       date: null == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as String,
     ));
   }
 }
@@ -170,7 +170,7 @@ class _$_OrderDTO implements _OrderDTO {
   @override
   final double price;
   @override
-  final DateTime date;
+  final String date;
 
   @override
   String toString() {
@@ -215,7 +215,7 @@ abstract class _OrderDTO implements OrderDTO {
       @JsonKey(name: 'coin_symbol') required final String coinSymbol,
       required final double amount,
       required final double price,
-      required final DateTime date}) = _$_OrderDTO;
+      required final String date}) = _$_OrderDTO;
 
   factory _OrderDTO.fromJson(Map<String, dynamic> json) = _$_OrderDTO.fromJson;
 
@@ -229,7 +229,7 @@ abstract class _OrderDTO implements OrderDTO {
   @override
   double get price;
   @override
-  DateTime get date;
+  String get date;
   @override
   @JsonKey(ignore: true)
   _$$_OrderDTOCopyWith<_$_OrderDTO> get copyWith =>
