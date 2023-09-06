@@ -14,13 +14,10 @@ class OrderMapper {
   }
 
   static OrderType typeFromDTO(int orderType) {
-    switch (orderType) {
-      case 0:
-        return OrderType.buy;
-      case 1:
-        return OrderType.sell;
-      default:
-        return OrderType.none;
-    }
+    return switch (orderType) {
+      0 => OrderType.buy,
+      1 => OrderType.sell,
+      _ => OrderType.none
+    };
   }
 }
