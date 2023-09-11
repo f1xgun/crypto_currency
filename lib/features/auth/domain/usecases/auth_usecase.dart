@@ -16,7 +16,7 @@ class AuthUseCase {
       final (user, token) =
           await authRepository.signIn(email: email, password: password);
 
-      await secureStorage.write('token', token);
+      await secureStorage.write(key: 'token', value: token);
 
       return user;
     } on Object catch (_) {
@@ -37,7 +37,7 @@ class AuthUseCase {
 
   Future<bool> logOut() async {
     try {
-      await secureStorage.delete('token');
+      await secureStorage.delete(key: 'token');
       return true;
     } on Object catch (_) {
       rethrow;

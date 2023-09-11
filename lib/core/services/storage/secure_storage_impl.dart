@@ -6,12 +6,12 @@ class SecureStorageImpl implements SecureStorage {
   SecureStorageImpl() : _flutterSecureStorage = const FlutterSecureStorage();
 
   @override
-  Future<void> delete(String key) async {
+  Future<void> delete({required String key}) async {
     await _flutterSecureStorage.delete(key: key);
   }
 
   @override
-  Future<String?> get(String key) async {
+  Future<String?> get({required String key}) async {
     final String? value = await _flutterSecureStorage.read(key: key);
     return value;
   }
@@ -23,7 +23,7 @@ class SecureStorageImpl implements SecureStorage {
   }
 
   @override
-  Future<void> write(String key, String value) async {
+  Future<void> write({required String key, required String value}) async {
     await _flutterSecureStorage.write(key: key, value: value);
   }
 }

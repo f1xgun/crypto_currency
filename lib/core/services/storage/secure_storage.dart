@@ -1,6 +1,6 @@
 abstract interface class SecureStorage {
-  Future<String?> get(String key);
-  Future<void> write(String key, String value);
-  Future<void> delete(String key);
+  Future<String?> get({required String key});
+  Future<void> write({required String key, required String value});
+  Future<void> delete({required String key});
   Future<String> getToken();
 }

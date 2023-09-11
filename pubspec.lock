@@ -419,7 +419,7 @@ packages:
     source: hosted
     version: "2.1.1"
   logger:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: logger
       sha256: ba3bc83117b2b49bdd723c0ea7848e8285a0fbc597ba09203b20d329d020c24a
