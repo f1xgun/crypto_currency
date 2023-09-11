@@ -146,7 +146,6 @@ linter:
     eol_at_end_of_file: true
     exhaustive_cases: true
     file_names: true
-    flutter_style_todos: true
     implementation_imports: true
     implicit_call_tearoffs: false
     implicit_reopen: true
