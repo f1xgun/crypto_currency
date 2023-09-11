@@ -21,13 +21,14 @@ jobs:
           channel: 'stable'
           cache: true
 
+      - run: dart format --set-exit-if-changed . 
       - run: flutter pub get
-      - run: flutter analyze
+      - run: flutter analyze --no-fatal-infos
 
-      # - run: flutter test --coverage
+      - run: flutter test --coverage 
 
-      # - name: Upload coverage to Codecov
-      #   uses: codecov/codecov-action@v3.1.1
-      #   with:
-      #     token: ${{ secrets.CODECOV_TOKEN }}
-      #     file: coverage/lcov.info
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3.1.4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          file: coverage/lcov.info

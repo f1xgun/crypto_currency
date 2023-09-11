@@ -7,8 +7,7 @@ part 'order_dto.freezed.dart';
 class OrderDTO with _$OrderDTO {
   const factory OrderDTO({
     required int type,
-    @JsonKey(name: 'coin_symbol')
-    required String coinSymbol,
+    @JsonKey(name: 'coin_symbol') required String coinSymbol,
     required double amount,
     required double price,
     required String date,

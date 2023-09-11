@@ -1,4 +1,3 @@
-
 abstract class NetworkService {
   String get baseUrl;
 
@@ -16,5 +15,6 @@ abstract class NetworkService {
 
   Future<Map<String, dynamic>> delete(String endpoint);
 
-  Future<Map<String, dynamic>> put(String endpoint, {Map<String, dynamic>? queryParametres});
+  Future<Map<String, dynamic>> put(String endpoint,
+      {Map<String, dynamic>? queryParametres});
 }

@@ -8,12 +8,10 @@ class CoinDTO with _$CoinDTO {
   const factory CoinDTO({
     required String symbol,
     required double price,
-    @JsonKey(name: 'high_price')
-    required double highPrice,
+    @JsonKey(name: 'high_price') required double highPrice,
     @JsonKey(name: 'price_change_percent_24h')
     required double priceChangePercent24h,
-    @JsonKey(name: 'image_url')
-    String? imageUrl,
+    @JsonKey(name: 'image_url') String? imageUrl,
   }) = _CoinDTO;
 
   factory CoinDTO.fromJson(Map<String, dynamic> json) =>

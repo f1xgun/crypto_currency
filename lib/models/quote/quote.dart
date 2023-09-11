@@ -11,15 +11,14 @@ class Quote {
   final double percentChange24H;
   final double percentChange7D;
   final DateTime lastUpdated;
-  const Quote({
-      required this.price,
+  const Quote(
+      {required this.price,
       required this.volume24H,
       required this.marketCap,
       required this.percentChange1H,
       required this.percentChange24H,
       required this.percentChange7D,
-      required this.lastUpdated
-  });
+      required this.lastUpdated});
 
   factory Quote.fromJson(Map<String, dynamic> json) => _$QuoteFromJson(json);
 

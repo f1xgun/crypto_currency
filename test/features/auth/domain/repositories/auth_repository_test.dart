@@ -37,8 +37,8 @@ void main() {
             .thenThrow(ResponseException(message: 'Not Authorized'));
 
         expect(
-            () async => repository.signIn(
-                email: 'example', password: 'some password'),
+            () async =>
+                repository.signIn(email: 'example', password: 'some password'),
             throwsA(isA<ResponseException>()));
       });
     });
@@ -75,8 +75,8 @@ void main() {
             .thenThrow(ResponseException(message: 'Not Authorized'));
 
         expect(
-            () async => repository.signUp(
-                email: 'example', password: 'some password'),
+            () async =>
+                repository.signUp(email: 'example', password: 'some password'),
             throwsA(isA<ResponseException>()));
       });
     });

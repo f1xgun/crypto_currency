@@ -15,8 +15,7 @@ class UserDTO with _$UserDTO {
     required List<UserCoinDTO> coins,
     required List<CoinDTO> favorites,
     required List<OrderDTO> orders,
-    @JsonKey(name: 'avatar_url')
-    String? avatarUrl,
+    @JsonKey(name: 'avatar_url') String? avatarUrl,
   }) = _UserDTO;
 
   factory UserDTO.fromJson(Map<String, dynamic> json) =>

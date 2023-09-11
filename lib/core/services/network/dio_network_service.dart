@@ -44,13 +44,15 @@ class DioNetworkService implements NetworkService {
   }
 
   @override
-  Future<Map<String, dynamic>> post(String endpoint, {Map<String, dynamic>? queryParametres}) async {
+  Future<Map<String, dynamic>> post(String endpoint,
+      {Map<String, dynamic>? queryParametres}) async {
     // TODO: implement post
     throw UnimplementedError();
   }
 
   @override
-  Future<Map<String, dynamic>> put(String endpoint, {Map<String, dynamic>? queryParametres}) async {
+  Future<Map<String, dynamic>> put(String endpoint,
+      {Map<String, dynamic>? queryParametres}) async {
     // TODO: implement put
     throw UnimplementedError();
   }
@@ -72,7 +74,8 @@ class DioNetworkService implements NetworkService {
           if (dioException.error is SocketException) {
             throw NoInternetException();
           } else {
-            throw UnknownNetworkException(message: dioException.error.toString());
+            throw UnknownNetworkException(
+                message: dioException.error.toString());
           }
       }
     } on SocketException catch (_) {
