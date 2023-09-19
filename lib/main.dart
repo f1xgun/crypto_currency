@@ -9,6 +9,7 @@ import 'package:crypto_currency/pages/onboarding_screen.dart';
 import 'package:crypto_currency/pages/ranking_screen.dart';
 import 'package:crypto_currency/pages/ranking_screen_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
@@ -16,7 +17,7 @@ void main() {
     WidgetsFlutterBinding.ensureInitialized();
     final SharedPreferences pref = await SharedPreferences.getInstance();
     final bool seenOnboard = pref.getBool('seenOnboard') ?? false;
-    runApp(MyApp(seenOnboard: seenOnboard));
+    runApp(ProviderScope(child: MyApp(seenOnboard: seenOnboard)));
   }, (error, stack) {
     logger.error(error.toString(), error, stack);
   });
