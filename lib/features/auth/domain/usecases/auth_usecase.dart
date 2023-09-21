@@ -24,21 +24,17 @@ class AuthUseCase {
     }
   }
 
-  Future<bool> signUp({required String email, required String password}) async {
+  Future<void> signUp({required String email, required String password}) async {
     try {
-      final signUpResult =
-          await authRepository.signUp(email: email, password: password);
-
-      return signUpResult;
+      await authRepository.signUp(email: email, password: password);
     } on Object catch (_) {
       rethrow;
     }
   }
 
-  Future<bool> logOut() async {
+  Future<void> logOut() async {
     try {
       await secureStorage.delete(key: 'token');
-      return true;
     } on Object catch (_) {
       rethrow;
     }

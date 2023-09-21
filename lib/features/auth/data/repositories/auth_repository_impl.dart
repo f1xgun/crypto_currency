@@ -22,11 +22,9 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<bool> signUp({required String email, required String password}) async {
+  Future<void> signUp({required String email, required String password}) async {
     try {
-      final bool signUpSuccessfully =
-          await authDataSource.signUp(email: email, password: password);
-      return signUpSuccessfully;
+      await authDataSource.signUp(email: email, password: password);
     } on Object catch (_) {
       rethrow;
     }

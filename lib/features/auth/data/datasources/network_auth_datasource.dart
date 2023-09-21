@@ -15,7 +15,7 @@ class NetworkAuthDataSource implements AuthDataSource {
   }
 
   @override
-  Future<bool> signUp({required String email, required String password}) async {
+  Future<void> signUp({required String email, required String password}) async {
     // TODO: implement signUp
     throw UnimplementedError();
   }

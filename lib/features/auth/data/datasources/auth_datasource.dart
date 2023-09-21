@@ -4,5 +4,5 @@ abstract interface class AuthDataSource {
   Future<(UserDTO, String)> signIn(
       {required String email, required String password});
 
-  Future<bool> signUp({required String email, required String password});
+  Future<void> signUp({required String email, required String password});
 }
