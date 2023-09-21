@@ -19,12 +19,12 @@ void main() {
     ),
   );
 
-  group('Auth UseCase test', () {
+  group('AuthUseCase', () {
     when(() => mockSecureStorage.write(
         key: any(named: 'key'),
         value: any(named: 'value'))).thenAnswer((_) async => Future<void>);
     group('Test signIn', () {
-      test('Test signIn with successfully result', () async {
+      test('with successfully result', () async {
         when(() => mockAuthRepository.signIn(
             email: 'example', password: 'some password')).thenAnswer(
           (_) async => (users[0], 'some token'),
@@ -42,7 +42,7 @@ void main() {
             .called(1);
       });
 
-      test('Test signIn with response exception from Repository', () async {
+      test('with ResponseException from Repository', () async {
         when(() => mockAuthRepository.signIn(
                 email: 'example', password: 'some password'))
             .thenThrow(ResponseException(message: 'Not Authorized'));
@@ -52,10 +52,11 @@ void main() {
                 authUseCase.signIn(email: 'example', password: 'some password'),
             throwsA(isA<ResponseException>()));
 
-        verifyNever(() => mockSecureStorage.write(key: 'token', value: 'some token'));
+        verifyNever(
+            () => mockSecureStorage.write(key: 'token', value: 'some token'));
       });
 
-      test('Test signIn with exception from secureStorage', () async {
+      test('with Exception from secureStorage', () async {
         when(() => mockAuthRepository.signIn(
             email: 'example', password: 'some password')).thenAnswer(
           (_) async => (users[0], 'some token'),
@@ -75,21 +76,7 @@ void main() {
     });
 
     group('Test signUp', () {
-      test('Test signUp with successfully result', () async {
-        when(() => mockAuthRepository.signUp(
-            email: 'example', password: 'some password')).thenAnswer(
-          (_) async => true,
-        );
-
-        expect(
-            await authUseCase.signUp(
-              email: 'example',
-              password: 'some password',
-            ),
-            true);
-      });
-
-      test('Test signUp with response exception from Repository', () async {
+      test('with ResponseException from Repository', () async {
         when(() => mockAuthRepository.signUp(
                 email: 'example', password: 'some password'))
             .thenThrow(ResponseException(message: 'Not Authorized'));
@@ -100,32 +87,51 @@ void main() {
             throwsA(isA<ResponseException>()));
       });
 
-      test(
-          'Test signUp with unsuccessfully result, '
-          'ex. user with this email already has', () async {
+      test('with NoInternetException from Repository', () async {
         when(() => mockAuthRepository.signUp(
-            email: 'example',
-            password: 'some password')).thenAnswer((_) async => false);
+                email: 'example', password: 'some password'))
+            .thenThrow(NoInternetException());
 
         expect(
-          await mockAuthRepository.signUp(
-              email: 'example', password: 'some password'),
-          false,
-        );
+            () async =>
+                authUseCase.signUp(email: 'example', password: 'some password'),
+            throwsA(isA<NoInternetException>()));
+      });
+
+      test('with UnknownNetworkException from Repository', () async {
+        when(() => mockAuthRepository.signUp(
+                email: 'example', password: 'some password'))
+            .thenThrow(UnknownNetworkException());
+
+        expect(
+            () async =>
+                authUseCase.signUp(email: 'example', password: 'some password'),
+            throwsA(isA<UnknownNetworkException>()));
+      });
+
+      test('with uncaught Exception from Repository', () async {
+        when(() => mockAuthRepository.signUp(
+                email: 'example', password: 'some password'))
+            .thenThrow(Exception());
+
+        expect(
+            () async =>
+                authUseCase.signUp(email: 'example', password: 'some password'),
+            throwsA(isA<Exception>()));
       });
     });
 
     group('Test logOut', () {
-      test('Test logOut with successfully result', () async {
+      test('with successfully result', () async {
         when(() => mockSecureStorage.delete(key: 'token'))
             .thenAnswer((_) async => Future<void>);
 
-        expect(await authUseCase.logOut(), true);
+        await authUseCase.logOut();
 
         verify(() => mockSecureStorage.delete(key: 'token')).called(1);
       });
 
-      test('Test logOut with response exception from SecureStorage', () async {
+      test('with response exception from SecureStorage', () async {
         when(() => mockSecureStorage.delete(key: 'token'))
             .thenThrow(Exception());
 

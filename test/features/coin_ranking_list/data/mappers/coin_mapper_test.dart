@@ -4,7 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import '../../../../mock_data/coins.dart';
 
 void main() {
-  group('Coin mapper', () {
+  group('CoinMapper', () {
     test('Map #1', () {
       expect(CoinMapper.fromDTO(coinsDTO[0]), coins[0]);
     });

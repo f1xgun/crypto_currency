@@ -5,7 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import '../../../../mock_data/orders.dart';
 
 void main() {
-  group('Order mapper', () {
+  group('OrderMapper', () {
     test('Map #1', () {
       expect(OrderMapper.fromDTO(ordersDTO[0]), orders[0]);
     });
@@ -16,11 +16,11 @@ void main() {
   });
 
   group('Order type mapper', () {
-    test('OrderType.buy from OrderDTO.type = 0', () {
+    test('OrderType.buy from OrderDTO.type == 0', () {
       expect(OrderMapper.typeFromDTO(0), OrderType.buy);
     });
 
-    test('OrderType.sell from OrderDTO.type = 1', () {
+    test('OrderType.sell from OrderDTO.type == 1', () {
       expect(OrderMapper.typeFromDTO(1), OrderType.sell);
     });
 
