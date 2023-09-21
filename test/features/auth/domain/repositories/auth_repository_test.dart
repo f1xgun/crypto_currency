@@ -57,8 +57,8 @@ void main() {
 
       test('with NoInternetException from DataSource', () async {
         when(() => authDataSource.signUp(
-                email: 'example', password: 'some password'))
-            .thenThrow(NoInternetException());
+            email: 'example',
+            password: 'some password')).thenThrow(NoInternetException());
 
         expect(
             () async =>
@@ -68,8 +68,8 @@ void main() {
 
       test('with UnknownNetworkException from DataSource', () async {
         when(() => authDataSource.signUp(
-                email: 'example', password: 'some password'))
-            .thenThrow(UnknownNetworkException());
+            email: 'example',
+            password: 'some password')).thenThrow(UnknownNetworkException());
 
         expect(
             () async =>
@@ -79,8 +79,8 @@ void main() {
 
       test('with Exception from DataSource', () async {
         when(() => authDataSource.signUp(
-                email: 'example', password: 'some password'))
-            .thenThrow(Exception());
+            email: 'example',
+            password: 'some password')).thenThrow(Exception());
 
         expect(
             () async =>

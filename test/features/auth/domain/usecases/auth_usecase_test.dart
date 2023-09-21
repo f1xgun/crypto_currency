@@ -89,8 +89,8 @@ void main() {
 
       test('with NoInternetException from Repository', () async {
         when(() => mockAuthRepository.signUp(
-                email: 'example', password: 'some password'))
-            .thenThrow(NoInternetException());
+            email: 'example',
+            password: 'some password')).thenThrow(NoInternetException());
 
         expect(
             () async =>
@@ -100,8 +100,8 @@ void main() {
 
       test('with UnknownNetworkException from Repository', () async {
         when(() => mockAuthRepository.signUp(
-                email: 'example', password: 'some password'))
-            .thenThrow(UnknownNetworkException());
+            email: 'example',
+            password: 'some password')).thenThrow(UnknownNetworkException());
 
         expect(
             () async =>
@@ -111,8 +111,8 @@ void main() {
 
       test('with uncaught Exception from Repository', () async {
         when(() => mockAuthRepository.signUp(
-                email: 'example', password: 'some password'))
-            .thenThrow(Exception());
+            email: 'example',
+            password: 'some password')).thenThrow(Exception());
 
         expect(
             () async =>
