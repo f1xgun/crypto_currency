@@ -6,7 +6,7 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   final providerContainer = ProviderContainer();
   late dynamic authUseCase;
-  
+
   setUp(() {
     authUseCase = providerContainer.read(authUseCaseProvider);
   });

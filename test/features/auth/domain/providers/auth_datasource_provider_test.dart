@@ -9,7 +9,7 @@ void main() {
   final providerContainer = ProviderContainer();
   late dynamic networkService;
   late dynamic authDataSource;
-  
+
   setUpAll(() {
     networkService = providerContainer.read(networkServiceProvider);
     authDataSource = providerContainer

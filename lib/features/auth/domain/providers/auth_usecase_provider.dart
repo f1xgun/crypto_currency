@@ -8,5 +8,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 final authUseCaseProvider = Provider.autoDispose<AuthUseCase>((ref) {
   final AuthRepository authRepository = ref.read(authRepositoryProvider);
   final SecureStorage secureStorage = ref.read(secureStorageProvider);
-  return AuthUseCase(authRepository: authRepository, secureStorage: secureStorage);
+  return AuthUseCase(
+      authRepository: authRepository, secureStorage: secureStorage);
 });
