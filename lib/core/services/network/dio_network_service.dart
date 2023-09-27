@@ -7,6 +7,7 @@ import 'package:crypto_currency/core/services/storage/secure_storage.dart';
 import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
+// TODO: add tests
 class DioNetworkService implements NetworkService {
   late final Dio dio;
   final SecureStorage _secureStorage;
@@ -21,8 +22,9 @@ class DioNetworkService implements NetworkService {
   BaseOptions get baseOptions =>
       BaseOptions(baseUrl: baseUrl, headers: headers);
 
+  // TODO: add baseUrl
   @override
-  String get baseUrl => throw UnimplementedError();
+  String get baseUrl => '';
 
   @override
   Map<String, String> get headers => {

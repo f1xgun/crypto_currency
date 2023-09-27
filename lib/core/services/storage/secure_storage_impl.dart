@@ -3,7 +3,8 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class SecureStorageImpl implements SecureStorage {
   final FlutterSecureStorage _flutterSecureStorage;
-  SecureStorageImpl() : _flutterSecureStorage = const FlutterSecureStorage();
+  SecureStorageImpl({required FlutterSecureStorage flutterSecureStorage})
+      : _flutterSecureStorage = flutterSecureStorage;
 
   @override
   Future<void> delete({required String key}) async {
