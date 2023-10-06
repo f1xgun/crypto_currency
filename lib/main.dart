@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:crypto_currency/core/l10n/s.dart';
 import 'package:crypto_currency/core/logger/logger.dart';
 import 'package:crypto_currency/core/services/storage/shared_preferences_provider.dart';
 import 'package:crypto_currency/core/themes/app_theme.dart';
@@ -17,9 +18,14 @@ import 'package:shared_preferences/shared_preferences.dart';
 void main() {
   runZonedGuarded(() async {
     WidgetsFlutterBinding.ensureInitialized();
-    runApp(const ProviderScope(child: MyApp()));
+    final container = ProviderContainer();
+
+    await container.read(sharedPreferencesProvider.future);
+
+    runApp(
+        UncontrolledProviderScope(container: container, child: const MyApp()));
   }, (error, stack) {
-    logger.error(error.toString(), error, stack);
+    logger.error(message: error.toString(), e: error, stackTrace: stack);
   });
 }
 
@@ -38,6 +44,9 @@ class MyApp extends StatelessWidget {
       title: 'Crypto Currency',
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
+      localizationsDelegates: S.localizationDelegates,
+      locale: S.en,
+      supportedLocales: S.supportedLocales,
       home: Consumer(
         builder: (context, ref, widget) {
           return FutureBuilder(
@@ -52,7 +61,7 @@ class MyApp extends StatelessWidget {
             },
             future: ref.watch(sharedPreferencesProvider).when(
                   error: (e, stackTrace) {
-                    logger.error(e.toString(), e, stackTrace);
+                    logger.error(message: e.toString(), e: e, stackTrace: stackTrace);
                     return Future.value(false);
                   },
                   loading: () => null,

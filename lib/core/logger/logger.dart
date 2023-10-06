@@ -7,19 +7,19 @@ class CustomLogger {
 
   CustomLogger() : logger = Logger();
 
-  void debug(String message) {
+  void debug({required String message}) {
     logger.d(message);
   }
 
-  void info(String message) {
+  void info({required String message}) {
     logger.i(message);
   }
 
-  void warning(String message) {
+  void warning({required String message}) {
     logger.w(message);
   }
 
-  void error(String message, [Object? e, StackTrace? stackTrace]) {
+  void error({required String message, Object? e, StackTrace? stackTrace}) {
     logger.e(message, error: e, stackTrace: stackTrace);
   }
 }

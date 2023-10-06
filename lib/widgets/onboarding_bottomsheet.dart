@@ -1,4 +1,5 @@
 import 'package:crypto_currency/core/extensions/build_context_extension.dart';
+import 'package:crypto_currency/core/l10n/s.dart';
 import 'package:crypto_currency/pages/login_screen.dart';
 import 'package:crypto_currency/pages/onboarding_screen.dart';
 import 'package:crypto_currency/widgets/filled_button.dart';
@@ -72,7 +73,7 @@ class _OnboardingBottomSheetWidgetState
                       curve: Curves.ease,
                     );
             },
-            text: widget.isLast ? 'Get started' : 'Next',
+            text: widget.isLast ? S.of(context).getStarted : S.of(context).next,
           ),
           const SizedBox(
             height: 10,
@@ -86,7 +87,9 @@ class _OnboardingBottomSheetWidgetState
                 ),
               );
             },
-            text: widget.isLast ? 'Dont show again' : 'Skip',
+            text: widget.isLast
+                ? S.of(context).dontShowAgain
+                : S.of(context).skip,
           ),
         ],
       ),

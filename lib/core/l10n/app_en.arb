@@ -1,0 +1,91 @@
+{
+    "titleForFirstOnboaringPage": "All your crypto in one place",
+    "@titleForFirstOnboaringPage": {
+        "description": "Title for first page on onboadring screen"
+    },
+
+    "subTitleForFirstOnboaringPage": "Already any coin and token on CryptoStore",
+    "@subTitleForFirstOnboaringPage": {
+        "description": "Subtitle for first page on onboadring screen"
+    },
+
+    "titleForSecondOnboaringPage": "Buy and Sell Your Crypto",
+    "@titleForSecondOnboaringPage": {
+        "description": "Title for second page on onboadring screen"
+    },
+
+    "subTitleForSecondOnboaringPage": "Easy buy and sell crypto on CryptoStore",
+    "@subTitleForSecondOnboaringPage": {
+        "description": "Subtitle for second page on onboadring screen"
+    },
+
+    "titleForThirdOnboaringPage": "Security Sistem for your wallet",
+    "@titleForThirdOnboaringPage": {
+        "description": "Title for third page on onboadring screen"
+    },
+
+    "subTitleForThirdOnboaringPage": "Guarantee for security on CryptoStore",
+    "@subTitleForThirdOnboaringPage": {
+        "description": "Subtitle for third page on onboadring screen"
+    },
+
+    "next": "Next",
+    "@next": {
+        "description": "Next element"
+    },
+
+    "skip": "Skip",
+    "@skip": {
+        "description": "Skip something"
+    },
+
+    "getStarted": "Get started",
+    "@getStarted": {
+        "description": "Start something, mb use for button on onboading page"
+    },
+
+    "dontShowAgain": "Don't show again",
+    "@dontShowAgain": {
+        "description": "Don't show something anymore"
+    }, 
+
+    "signIn": "Sign in",
+    "@signIn": {
+        "description": "Sign in"
+    },
+
+    "signUp": "Sign up",
+    "@signUp": {
+        "description": "Sign up"
+    },
+
+    "emailAddress": "Email address",
+    "@emailAddress": {
+        "description": "Email address"
+    },
+
+    "password": "Password",
+    "@password": {
+        "description": "Password"
+    },
+
+    "login": "Login",
+    "@login": {
+        "description": "Login in profile"
+    },
+
+    "forgotPassword": "Forgot password?",
+    "@forgotPassword": {
+        "description": "Forgot password"
+    },
+
+    "dontHaveAccount": "Don't have an account?",
+    "@dontHaveAccount": {
+        "description": "Asking text about you don't have an account"
+    },
+
+    "alreadyHaveAccount": "Already have an account?",
+    "@alreadyHaveAccount": {
+        "description": "Asking text about you have an account"
+    }
+}

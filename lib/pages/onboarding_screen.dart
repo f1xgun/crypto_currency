@@ -1,4 +1,5 @@
 import 'package:crypto_currency/core/extensions/build_context_extension.dart';
+import 'package:crypto_currency/core/l10n/s.dart';
 import 'package:crypto_currency/widgets/onboarding_bottomsheet.dart';
 import 'package:crypto_currency/widgets/onboarding_page.dart';
 import 'package:flutter/material.dart';
@@ -55,22 +56,25 @@ class _OnboardingPageState extends State<OnboardingPage> {
                             _currentPage = page;
                           });
                         },
-                        children: const <Widget>[
+                        children: <Widget>[
                           PageOfOnboarding(
-                              urlImage: 'coins',
-                              title: 'All your crypto in one place',
-                              subtitle:
-                                  'Already any coin and token on Cryptostone'),
+                            urlImage: 'all_crypto',
+                            title: S.of(context).titleForFirstOnboaringPage,
+                            subtitle:
+                                S.of(context).subTitleForFirstOnboaringPage,
+                          ),
                           PageOfOnboarding(
-                              urlImage: 'cryptowallet',
-                              title: 'Buy and Sell Your Crypto',
-                              subtitle:
-                                  'Easy buy and sell crypto on cryptostore'),
+                            urlImage: 'buy_sell_crypto',
+                            title: S.of(context).titleForSecondOnboaringPage,
+                            subtitle:
+                                S.of(context).subTitleForSecondOnboaringPage,
+                          ),
                           PageOfOnboarding(
-                              urlImage: 'exchange',
-                              title: 'Security System for your wallet',
-                              subtitle:
-                                  'Guarantee for security on cryptostore'),
+                            urlImage: 'security_system',
+                            title: S.of(context).titleForThirdOnboaringPage,
+                            subtitle:
+                                S.of(context).subTitleForThirdOnboaringPage,
+                          ),
                         ],
                       ),
                     ),

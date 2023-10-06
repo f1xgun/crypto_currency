@@ -1,4 +1,5 @@
 import 'package:crypto_currency/core/extensions/build_context_extension.dart';
+import 'package:crypto_currency/core/l10n/s.dart';
 import 'package:crypto_currency/widgets/filled_button.dart';
 import 'package:crypto_currency/widgets/form_field.dart';
 import 'package:crypto_currency/widgets/outlined_button.dart';
@@ -12,6 +13,23 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  late TextEditingController _loginInputController;
+  late TextEditingController _passwordInputController;
+  bool _isPasswordVisible = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _loginInputController = TextEditingController();
+    _passwordInputController = TextEditingController();
+  }
+
+  void _togglePasswordVisibility() {
+    setState(() {
+      _isPasswordVisible = !_isPasswordVisible;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +37,7 @@ class _LoginPageState extends State<LoginPage> {
       body: ColoredBox(
         color: context.colors.background,
         child: SafeArea(
-          child: Padding(
+          child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -27,23 +45,38 @@ class _LoginPageState extends State<LoginPage> {
                 const Spacer(),
                 Expanded(
                   child: Text(
-                    'Sign in',
+                    S.of(context).signIn,
                     style: context.textStyles.h2.copyWith(
                       color: context.colors.mainText,
                     ),
                   ),
                 ),
-                const FieldOfForm(
-                    text: 'Email address', prefixIcon: Icons.email_outlined),
+                FieldOfForm(
+                  inputController: _loginInputController,
+                  height: 64,
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  text: S.of(context).emailAddress,
+                  prefixIcon: const Icon(Icons.email_outlined),
+                ),
                 const SizedBox(height: 10),
-                const FieldOfForm(
-                  text: 'Password',
-                  prefixIcon: Icons.security_outlined,
-                  suffixIcon: Icons.visibility_off_outlined,
+                FieldOfForm(
+                  inputController: _passwordInputController,
+                  height: 64,
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  text: S.of(context).password,
+                  prefixIcon: const Icon(Icons.security_outlined),
+                  suffixIcon: GestureDetector(
+                    child: Icon(
+                      _isPasswordVisible
+                          ? Icons.visibility_outlined
+                          : Icons.visibility_off_outlined,
+                      color: context.colors.suffixInput,
+                    ),
+                    onTap: _togglePasswordVisibility,
+                  ),
+                  isPassword: _isPasswordVisible,
                 ),
-                const SizedBox(
-                  height: 28,
-                ),
+                const SizedBox(height: 28),
                 Expanded(
                   flex: 2,
                   child: Column(
@@ -52,11 +85,11 @@ class _LoginPageState extends State<LoginPage> {
                       CustomFilledButton(
                         onPressed: () =>
                             Navigator.pushReplacementNamed(context, '/home'),
-                        text: 'Login',
+                        text: S.of(context).login,
                       ),
                       const SizedBox(height: 20),
                       Text(
-                        'Forgot Password?',
+                        S.of(context).forgotPassword,
                         style: context.textStyles.bold
                             .copyWith(color: context.colors.dark70),
                         textAlign: TextAlign.center,
@@ -92,13 +125,16 @@ class _LoginPageState extends State<LoginPage> {
                 //   ]),
                 // ),
                 Text(
-                  "Don't have an account?",
+                  S.of(context).dontHaveAccount,
                   style: context.textStyles.h4
                       .copyWith(color: context.colors.mainText),
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 15),
-                CustomOutlinedButton(onPressed: () {}, text: 'Sign up'),
+                CustomOutlinedButton(
+                  onPressed: () {},
+                  text: S.of(context).signUp,
+                ),
               ],
             ),
           ),

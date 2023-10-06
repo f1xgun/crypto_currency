@@ -1,0 +1,37 @@
+{
+    "titleForFirstOnboaringPage": "Вся ваша криптовалюта в одном месте",
+
+    "subTitleForFirstOnboaringPage": "Множество монет и токенов в CryptoStore",
+
+    "titleForSecondOnboaringPage": "Покупайте и продавайте свою криптовалюту",
+
+    "subTitleForSecondOnboaringPage": "Покупайте и продавайте криптовалюту в CryptoStore всего за пару кликов",
+
+    "titleForThirdOnboaringPage": "Система безопасности для вашего кошелька",
+
+    "subTitleForThirdOnboaringPage": "Гарантия безопасности в CryptoStore",
+
+    "next": "Продолжить",
+
+    "skip": "Пропустить",
+
+    "getStarted": "Начать",
+
+    "dontShowAgain": "Не показывать больше",
+
+    "signIn": "Вход",
+
+    "signUp": "Зарегистироваться",
+
+    "emailAddress": "Эл. почта",
+
+    "password": "Пароль",
+
+    "login": "Войти",
+
+    "forgotPassword": "Забыли пароль?",
+
+    "dontHaveAccount": "Нет аккаунта?",
+
+    "alreadyHaveAccount": "Уже есть аккаунт?"
+}
