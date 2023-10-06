@@ -11,17 +11,27 @@ class AppState {
     }
     if (error is AppStateWrong) {
       logger.error(
-          message: error.message,
-          stackTrace: StackTrace.fromString(error.details ?? ''),
-          e: error);
+        message: error.message,
+        stackTrace: StackTrace.fromString(error.details ?? ''),
+        e: error,
+      );
+
       return error;
     } else if (error is DioException) {
       logger.error(
-          message: error.message ?? '', stackTrace: error.stackTrace, e: error);
+        message: error.message ?? '',
+        stackTrace: error.stackTrace,
+        e: error,
+      );
+
       return AppStateWrong.error(error.message ?? '');
     } else if (error is TypeError) {
       logger.error(
-          message: error.toString(), stackTrace: error.stackTrace, e: error);
+        message: error.toString(),
+        stackTrace: error.stackTrace,
+        e: error,
+      );
+
       return AppStateWrong.error(error.toString());
     }
     logger.error(message: 'unhandled error', e: error);
@@ -31,7 +41,7 @@ class AppState {
 }
 
 @freezed
-class AppStateWrong extends AppState with _$AppStateWrong implements Exception {
+class AppStateWrong with _$AppStateWrong implements Exception {
   factory AppStateWrong.error(String message, {String? details}) =
       _AppStateWrongError;
   factory AppStateWrong.warning(String message, {String? details}) =
