@@ -1,9 +1,10 @@
 import 'dart:async';
 
-import 'package:crypto_currency/core/exceptions/exceptions.dart';
+import 'package:crypto_currency/core/exceptions/app_state.dart';
 import 'package:crypto_currency/features/auth/domain/usecases/auth_usecase.dart';
 import 'package:crypto_currency/features/auth/presentation/controllers/auth_controller.dart';
 import 'package:crypto_currency/features/auth/presentation/controllers/auth_state.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -43,16 +44,16 @@ void main() {
         verifyNoMoreInteractions(authUseCase);
       }, timeout: const Timeout(Duration(milliseconds: 500)));
 
-      test('fails with NoInternetException', () async {
+      test('fails with AppStateWrong.warning', () async {
         when(() => authUseCase.signIn(email: 'valid', password: 'valid'))
-            .thenThrow(NoInternetException());
+            .thenThrow(AppStateWrong.warning('Not found'));
 
         // Check AuthController states
         unawaited(expectLater(
           authController.stream,
           emitsInOrder([
             const AuthState.loading(),
-            const AuthState.failure('No internet connection'),
+            const AuthState.failure('Not found'),
           ]),
         ));
 
@@ -66,16 +67,16 @@ void main() {
         verifyNoMoreInteractions(authUseCase);
       }, timeout: const Timeout(Duration(milliseconds: 500)));
 
-      test('fails with ResponseException', () async {
+      test('fails with AppStateWrong.error', () async {
         when(() => authUseCase.signIn(email: 'valid', password: 'valid'))
-            .thenThrow(ResponseException(message: 'ResponseException'));
+            .thenThrow(AppStateWrong.error('Not found'));
 
         // Check AuthController states
         unawaited(expectLater(
           authController.stream,
           emitsInOrder([
             const AuthState.loading(),
-            const AuthState.failure('ResponseException'),
+            const AuthState.failure('Not found'),
           ]),
         ));
 
@@ -89,16 +90,17 @@ void main() {
         verifyNoMoreInteractions(authUseCase);
       }, timeout: const Timeout(Duration(milliseconds: 500)));
 
-      test('fails with UnknownNetworkException', () async {
+      test('fails with DioException', () async {
         when(() => authUseCase.signIn(email: 'valid', password: 'valid'))
-            .thenThrow(UnknownNetworkException());
+            .thenThrow(DioException(
+                requestOptions: RequestOptions(), message: 'dio exception'));
 
         // Check AuthController states
         unawaited(expectLater(
           authController.stream,
           emitsInOrder([
             const AuthState.loading(),
-            const AuthState.failure('Unknown network error'),
+            const AuthState.failure('dio exception'),
           ]),
         ));
 
@@ -112,16 +114,39 @@ void main() {
         verifyNoMoreInteractions(authUseCase);
       }, timeout: const Timeout(Duration(milliseconds: 500)));
 
-      test('fails with uncaught Exception', () async {
+      test('fails with TypeError', () async {
         when(() => authUseCase.signIn(email: 'valid', password: 'valid'))
-            .thenThrow(Exception('Uncaught exception'));
+            .thenThrow(TypeError());
 
         // Check AuthController states
         unawaited(expectLater(
           authController.stream,
           emitsInOrder([
             const AuthState.loading(),
-            const AuthState.failure('Exception: Uncaught exception'),
+            const AuthState.failure("Instance of 'TypeError'"),
+          ]),
+        ));
+
+        await authController.signIn(email: 'valid', password: 'valid');
+
+        // Check that AuthUseCase signIn method called only once
+        verify(() => authUseCase.signIn(email: 'valid', password: 'valid'))
+            .called(1);
+
+        // Check that AuthUseCase methods no more called
+        verifyNoMoreInteractions(authUseCase);
+      }, timeout: const Timeout(Duration(milliseconds: 500)));
+
+      test('fails with Unhandled error', () async {
+        when(() => authUseCase.signIn(email: 'valid', password: 'valid'))
+            .thenThrow(Object());
+
+        // Check AuthController states
+        unawaited(expectLater(
+          authController.stream,
+          emitsInOrder([
+            const AuthState.loading(),
+            const AuthState.failure("Instance of 'Object'"),
           ]),
         ));
 
@@ -160,16 +185,16 @@ void main() {
         verifyNoMoreInteractions(authUseCase);
       }, timeout: const Timeout(Duration(milliseconds: 500)));
 
-      test('fails with NoInternetException', () async {
+      test('fails with AppStateWrong.warning', () async {
         when(() => authUseCase.signUp(email: 'valid', password: 'valid'))
-            .thenThrow(NoInternetException());
+            .thenThrow(AppStateWrong.warning('some error'));
 
         // Check AuthController states
         unawaited(expectLater(
           authController.stream,
           emitsInOrder([
             const AuthState.loading(),
-            const AuthState.failure('No internet connection'),
+            const AuthState.failure('some error'),
           ]),
         ));
 
@@ -183,16 +208,16 @@ void main() {
         verifyNoMoreInteractions(authUseCase);
       }, timeout: const Timeout(Duration(milliseconds: 500)));
 
-      test('fails with ResponseException', () async {
+      test('fails with AppStateWrong.error', () async {
         when(() => authUseCase.signUp(email: 'valid', password: 'valid'))
-            .thenThrow(ResponseException(message: 'ResponseException'));
+            .thenThrow(AppStateWrong.error('some error'));
 
         // Check AuthController states
         unawaited(expectLater(
           authController.stream,
           emitsInOrder([
             const AuthState.loading(),
-            const AuthState.failure('ResponseException'),
+            const AuthState.failure('some error'),
           ]),
         ));
 
@@ -206,16 +231,17 @@ void main() {
         verifyNoMoreInteractions(authUseCase);
       }, timeout: const Timeout(Duration(milliseconds: 500)));
 
-      test('fails with UnknownNetworkException', () async {
+      test('fails with DioException', () async {
         when(() => authUseCase.signUp(email: 'valid', password: 'valid'))
-            .thenThrow(UnknownNetworkException());
+            .thenThrow(DioException(
+                requestOptions: RequestOptions(), message: 'dio exception'));
 
         // Check AuthController states
         unawaited(expectLater(
           authController.stream,
           emitsInOrder([
             const AuthState.loading(),
-            const AuthState.failure('Unknown network error'),
+            const AuthState.failure('dio exception'),
           ]),
         ));
 
@@ -229,16 +255,39 @@ void main() {
         verifyNoMoreInteractions(authUseCase);
       }, timeout: const Timeout(Duration(milliseconds: 500)));
 
-      test('fails with uncaught Exception', () async {
+      test('fails with TypeError', () async {
         when(() => authUseCase.signUp(email: 'valid', password: 'valid'))
-            .thenThrow(Exception('Uncaught exception'));
+            .thenThrow(TypeError());
 
         // Check AuthController states
         unawaited(expectLater(
           authController.stream,
           emitsInOrder([
             const AuthState.loading(),
-            const AuthState.failure('Exception: Uncaught exception'),
+            const AuthState.failure("Instance of 'TypeError'"),
+          ]),
+        ));
+
+        await authController.signUp(email: 'valid', password: 'valid');
+
+        // Check that AuthUseCase signUp method called only once
+        verify(() => authUseCase.signUp(email: 'valid', password: 'valid'))
+            .called(1);
+
+        // Check that AuthUseCase methods no more called
+        verifyNoMoreInteractions(authUseCase);
+      }, timeout: const Timeout(Duration(milliseconds: 500)));
+
+      test('fails with Unhandled error', () async {
+        when(() => authUseCase.signUp(email: 'valid', password: 'valid'))
+            .thenThrow(Exception('Unhandled error'));
+
+        // Check AuthController states
+        unawaited(expectLater(
+          authController.stream,
+          emitsInOrder([
+            const AuthState.loading(),
+            const AuthState.failure('Exception: Unhandled error'),
           ]),
         ));
 
@@ -269,14 +318,97 @@ void main() {
         verifyNoMoreInteractions(authUseCase);
       }, timeout: const Timeout(Duration(milliseconds: 500)));
 
-      test('fails with uncaught Exception', () async {
-        when(authUseCase.logOut).thenThrow(Exception('Uncaught exception'));
+      test('fails with AppStateWrong.warning', () async {
+        when(authUseCase.logOut)
+            .thenThrow(AppStateWrong.warning('AppStateWrong.warning'));
 
         // Check AuthController states
         unawaited(expectLater(
           authController.stream,
           emitsInOrder([
-            const AuthState.failure('Exception: Uncaught exception'),
+            const AuthState.failure('AppStateWrong.warning'),
+          ]),
+        ));
+
+        await authController.logOut();
+
+        // Check that AuthUseCase signUp method called only once
+        verify(authUseCase.logOut).called(1);
+
+        // Check that AuthUseCase methods no more called
+        verifyNoMoreInteractions(authUseCase);
+      }, timeout: const Timeout(Duration(milliseconds: 500)));
+
+      test('fails with AppStateWrong.error', () async {
+        when(authUseCase.logOut)
+            .thenThrow(AppStateWrong.error('AppStateWrong.error'));
+
+        // Check AuthController states
+        unawaited(expectLater(
+          authController.stream,
+          emitsInOrder([
+            const AuthState.failure('AppStateWrong.error'),
+          ]),
+        ));
+
+        await authController.logOut();
+
+        // Check that AuthUseCase signUp method called only once
+        verify(authUseCase.logOut).called(1);
+
+        // Check that AuthUseCase methods no more called
+        verifyNoMoreInteractions(authUseCase);
+      }, timeout: const Timeout(Duration(milliseconds: 500)));
+
+      test('fails with DioException', () async {
+        when(authUseCase.logOut).thenThrow(DioException(
+            requestOptions: RequestOptions(), message: 'DioException'));
+
+        // Check AuthController states
+        unawaited(expectLater(
+          authController.stream,
+          emitsInOrder([
+            const AuthState.failure('DioException'),
+          ]),
+        ));
+
+        await authController.logOut();
+
+        // Check that AuthUseCase signUp method called only once
+        verify(authUseCase.logOut).called(1);
+
+        // Check that AuthUseCase methods no more called
+        verifyNoMoreInteractions(authUseCase);
+      }, timeout: const Timeout(Duration(milliseconds: 500)));
+
+      test('fails with TypeError', () async {
+        when(authUseCase.logOut).thenThrow(TypeError());
+
+        // Check AuthController states
+        unawaited(expectLater(
+          authController.stream,
+          emitsInOrder([
+            const AuthState.failure("Instance of 'TypeError'"),
+          ]),
+        ));
+
+        await authController.logOut();
+
+        // Check that AuthUseCase signUp method called only once
+        verify(authUseCase.logOut).called(1);
+
+        // Check that AuthUseCase methods no more called
+        verifyNoMoreInteractions(authUseCase);
+      }, timeout: const Timeout(Duration(milliseconds: 500)));
+
+      test('fails with Unhandled error', () async {
+        when(authUseCase.logOut).thenThrow(Exception('Unhandled Error'));
+
+        // Check AuthController states
+        unawaited(expectLater(
+          authController.stream,
+          emitsInOrder([
+            const AuthState.failure('Exception: Unhandled Error'),
           ]),
         ));
 

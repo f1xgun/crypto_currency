@@ -1,4 +1,4 @@
-import 'package:crypto_currency/core/exceptions/exceptions.dart';
+import 'package:crypto_currency/core/exceptions/app_state.dart';
 import 'package:crypto_currency/features/auth/domain/usecases/auth_usecase.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -42,15 +42,29 @@ void main() {
             .called(1);
       });
 
-      test('with ResponseException from Repository', () async {
+      test('with AppStateWrong.warning from Repository', () async {
         when(() => mockAuthRepository.signIn(
                 email: 'example', password: 'some password'))
-            .thenThrow(ResponseException(message: 'Not Authorized'));
+            .thenThrow(AppStateWrong.warning('[404] Not found'));
 
         expect(
             () async =>
                 authUseCase.signIn(email: 'example', password: 'some password'),
-            throwsA(isA<ResponseException>()));
+            throwsA(isA<AppStateWrong>()));
+
+        verifyNever(
+            () => mockSecureStorage.write(key: 'token', value: 'some token'));
+      });
+
+      test('with AppStateWrong.error from Repository', () async {
+        when(() => mockAuthRepository.signIn(
+                email: 'example', password: 'some password'))
+            .thenThrow(AppStateWrong.error('[404] Not found'));
+
+        expect(
+            () async =>
+                authUseCase.signIn(email: 'example', password: 'some password'),
+            throwsA(isA<AppStateWrong>()));
 
         verifyNever(
             () => mockSecureStorage.write(key: 'token', value: 'some token'));
@@ -76,37 +90,26 @@ void main() {
     });
 
     group('Test signUp', () {
-      test('with ResponseException from Repository', () async {
+      test('with AppStateWrong.warning from Repository', () async {
         when(() => mockAuthRepository.signUp(
                 email: 'example', password: 'some password'))
-            .thenThrow(ResponseException(message: 'Not Authorized'));
+            .thenThrow(AppStateWrong.warning('Not Authorized'));
 
         expect(
             () async =>
                 authUseCase.signUp(email: 'example', password: 'some password'),
-            throwsA(isA<ResponseException>()));
+            throwsA(isA<AppStateWrong>()));
       });
 
-      test('with NoInternetException from Repository', () async {
+      test('with AppStateWrong.error from Repository', () async {
         when(() => mockAuthRepository.signUp(
-            email: 'example',
-            password: 'some password')).thenThrow(NoInternetException());
+                email: 'example', password: 'some password'))
+            .thenThrow(AppStateWrong.error('Not Authorized'));
 
         expect(
             () async =>
                 authUseCase.signUp(email: 'example', password: 'some password'),
-            throwsA(isA<NoInternetException>()));
-      });
-
-      test('with UnknownNetworkException from Repository', () async {
-        when(() => mockAuthRepository.signUp(
-            email: 'example',
-            password: 'some password')).thenThrow(UnknownNetworkException());
-
-        expect(
-            () async =>
-                authUseCase.signUp(email: 'example', password: 'some password'),
-            throwsA(isA<UnknownNetworkException>()));
+            throwsA(isA<AppStateWrong>()));
       });
 
       test('with uncaught Exception from Repository', () async {

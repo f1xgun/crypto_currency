@@ -1,4 +1,4 @@
-import 'package:crypto_currency/core/exceptions/exceptions.dart';
+import 'package:crypto_currency/core/exceptions/app_state.dart';
 import 'package:crypto_currency/features/auth/data/datasources/auth_datasource.dart';
 import 'package:crypto_currency/features/auth/data/repositories/auth_repository_impl.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -19,7 +19,7 @@ void main() {
 
   group('Auth Repository', () {
     group('Test signIn', () {
-      test('with successfully result', () async {
+      test('with AppStateSuccess', () async {
         when(() => authDataSource.signIn(
             email: 'example', password: 'some password')).thenAnswer(
           (_) async => (usersDTO[0], 'some token'),
@@ -31,50 +31,50 @@ void main() {
             (users[0], 'some token'));
       });
 
-      test('with response exception from DataSource', () async {
+      test('with AppStateWrong.error from DataSource', () async {
         when(() => authDataSource.signIn(
                 email: 'example', password: 'some password'))
-            .thenThrow(ResponseException(message: 'Not Authorized'));
+            .thenThrow(AppStateWrong.error('Not Authorized'));
 
         expect(
             () async =>
                 repository.signIn(email: 'example', password: 'some password'),
-            throwsA(isA<ResponseException>()));
+            throwsA(isA<AppStateWrong>()));
+      });
+
+      test('with AppStateWrong.warning from DataSource', () async {
+        when(() => authDataSource.signIn(
+                email: 'example', password: 'some password'))
+            .thenThrow(AppStateWrong.warning('[400] Not Authorized'));
+
+        expect(
+            () async =>
+                repository.signIn(email: 'example', password: 'some password'),
+            throwsA(isA<AppStateWrong>()));
       });
     });
 
     group('Test signUp', () {
-      test('with ResponseException from DataSource', () async {
+      test('with AppStateWrong.warning from DataSource', () async {
         when(() => authDataSource.signUp(
                 email: 'example', password: 'some password'))
-            .thenThrow(ResponseException(message: 'Not Authorized'));
+            .thenThrow(AppStateWrong.warning('[400] Not Authorized'));
 
         expect(
             () async =>
                 repository.signUp(email: 'example', password: 'some password'),
-            throwsA(isA<ResponseException>()));
+            throwsA(isA<AppStateWrong>()));
       });
 
-      test('with NoInternetException from DataSource', () async {
+      test('with AppStateWrong.error from DataSource', () async {
         when(() => authDataSource.signUp(
-            email: 'example',
-            password: 'some password')).thenThrow(NoInternetException());
+                email: 'example', password: 'some password'))
+            .thenThrow(AppStateWrong.error('Not found'));
 
         expect(
             () async =>
                 repository.signUp(email: 'example', password: 'some password'),
-            throwsA(isA<NoInternetException>()));
-      });
-
-      test('with UnknownNetworkException from DataSource', () async {
-        when(() => authDataSource.signUp(
-            email: 'example',
-            password: 'some password')).thenThrow(UnknownNetworkException());
-
-        expect(
-            () async =>
-                repository.signUp(email: 'example', password: 'some password'),
-            throwsA(isA<UnknownNetworkException>()));
+            throwsA(isA<AppStateWrong>()));
       });
 
       test('with Exception from DataSource', () async {

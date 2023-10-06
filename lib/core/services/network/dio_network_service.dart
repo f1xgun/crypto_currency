@@ -1,6 +1,4 @@
-import 'dart:io';
-
-import 'package:crypto_currency/core/exceptions/exceptions.dart';
+import 'package:crypto_currency/core/services/network/handler/network_handler.dart';
 import 'package:crypto_currency/core/services/network/interceptors/auth_interceptor.dart';
 import 'package:crypto_currency/core/services/network/network_service.dart';
 import 'package:crypto_currency/core/services/storage/secure_storage.dart';
@@ -33,57 +31,56 @@ class DioNetworkService implements NetworkService {
       };
 
   @override
-  Future<Map<String, dynamic>> delete(String endpoint) async {
-    // TODO: implement delete
-    throw UnimplementedError();
+  Future<Map<String, dynamic>> delete(String endpoint) {
+    return NetworkHandler.parseResult(dio.delete(endpoint));
   }
 
   @override
   Future<Map<String, dynamic>> get(String endpoint,
-      {Map<String, dynamic>? queryParametres}) async {
-    // TODO: implement get
-    throw UnimplementedError();
+      {Map<String, dynamic>? queryParameters}) {
+    return NetworkHandler.parseResult(
+        dio.get(endpoint, queryParameters: queryParameters));
   }
 
   @override
   Future<Map<String, dynamic>> post(String endpoint,
-      {Map<String, dynamic>? queryParametres}) async {
-    // TODO: implement post
-    throw UnimplementedError();
+      {Map<String, dynamic>? queryParameters}) {
+    return NetworkHandler.parseResult(
+        dio.post(endpoint, queryParameters: queryParameters));
   }
 
   @override
   Future<Map<String, dynamic>> put(String endpoint,
-      {Map<String, dynamic>? queryParametres}) async {
-    // TODO: implement put
-    throw UnimplementedError();
+      {Map<String, dynamic>? queryParameters}) {
+    return NetworkHandler.parseResult(
+        dio.put(endpoint, queryParameters: queryParameters));
   }
 
-  Future<T> _request<T>(Future<T> Function() requestFunc) async {
-    try {
-      return await requestFunc();
-    } on DioException catch (dioException) {
-      switch (dioException.type) {
-        case DioExceptionType.connectionTimeout:
-        case DioExceptionType.receiveTimeout:
-        case DioExceptionType.sendTimeout:
-        case DioExceptionType.cancel:
-        case DioExceptionType.connectionError:
-          throw NoInternetException();
-        case DioExceptionType.badResponse:
-          throw ResponseException(message: dioException.error.toString());
-        default:
-          if (dioException.error is SocketException) {
-            throw NoInternetException();
-          } else {
-            throw UnknownNetworkException(
-                message: dioException.error.toString());
-          }
-      }
-    } on SocketException catch (_) {
-      throw NoInternetException();
-    } on Object catch (err) {
-      throw UnknownNetworkException(message: err.toString());
-    }
-  }
+//   Future<T> _request<T>(Future<T> Function() requestFunc) async {
+//     try {
+//       return await requestFunc();
+//     } on DioException catch (dioException) {
+//       switch (dioException.type) {
+//         case DioExceptionType.connectionTimeout:
+//         case DioExceptionType.receiveTimeout:
+//         case DioExceptionType.sendTimeout:
+//         case DioExceptionType.cancel:
+//         case DioExceptionType.connectionError:
+//           throw NoInternetException();
+//         case DioExceptionType.badResponse:
+//           throw ResponseException(message: dioException.error.toString());
+//         default:
+//           if (dioException.error is SocketException) {
+//             throw NoInternetException();
+//           } else {
+//             throw UnknownNetworkException(
+//                 message: dioException.error.toString());
+//           }
+//       }
+//     } on SocketException catch (_) {
+//       throw NoInternetException();
+//     } on Object catch (err) {
+//       throw UnknownNetworkException(message: err.toString());
+//     }
+//   }
 }

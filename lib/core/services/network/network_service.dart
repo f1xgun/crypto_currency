@@ -5,16 +5,16 @@ abstract class NetworkService {
 
   Future<Map<String, dynamic>> get(
     String endpoint, {
-    Map<String, dynamic>? queryParametres,
+    Map<String, dynamic>? queryParameters,
   });
 
   Future<Map<String, dynamic>> post(
     String endpoint, {
-    Map<String, dynamic>? queryParametres,
+    Map<String, dynamic>? queryParameters,
   });
 
   Future<Map<String, dynamic>> delete(String endpoint);
 
   Future<Map<String, dynamic>> put(String endpoint,
-      {Map<String, dynamic>? queryParametres});
+      {Map<String, dynamic>? queryParameters});
 }
