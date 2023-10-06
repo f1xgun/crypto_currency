@@ -61,7 +61,8 @@ class MyApp extends StatelessWidget {
             },
             future: ref.watch(sharedPreferencesProvider).when(
                   error: (e, stackTrace) {
-                    logger.error(message: e.toString(), e: e, stackTrace: stackTrace);
+                    logger.error(
+                        message: e.toString(), e: e, stackTrace: stackTrace);
                     return Future.value(false);
                   },
                   loading: () => null,
