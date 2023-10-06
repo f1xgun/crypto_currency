@@ -19,6 +19,7 @@ class NetworkHandler {
         case 400:
         case 422:
           final rawData = resp.data as Map<String, dynamic>;
+          // TODO: handle to throw error after implement this on server
           if (rawData.containsKey('errors')) {
             if (rawData['errors'] != null) {
               throw AppStateWrong.warning(
