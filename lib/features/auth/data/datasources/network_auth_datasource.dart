@@ -16,11 +16,11 @@ class NetworkAuthDataSource implements AuthDataSource {
     if (result.containsKey('token') && result.containsKey('user')) {
       final String token = result['token'] as String;
       final UserDTO userDTO =
-          UserDTO.fromJson(result['userDTO'] as Map<String, dynamic>);
+          UserDTO.fromJson(result['user'] as Map<String, dynamic>);
       return (userDTO, token);
     } else {
       throw AppStateWrong.warning(
-          "[Sign in] Bad response: ${result.containsKey('token') ? '' : 'no token'} ${result.containsKey('user') ? '' : 'no user'}");
+          "[Sign in] Bad response:${result.containsKey('token') ? '' : ' no token'}${result.containsKey('user') ? '' : ' no user'}");
     }
   }
 
