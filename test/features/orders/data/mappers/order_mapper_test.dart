@@ -1,4 +1,7 @@
+import 'dart:math';
+
 import 'package:crypto_currency/features/orders/data/mappers/order_mapper.dart';
+import 'package:crypto_currency/features/orders/data/models/order_dto.dart';
 import 'package:crypto_currency/features/orders/domain/entities/order_type_enum.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -6,13 +9,11 @@ import '../../../../mock_data/orders.dart';
 
 void main() {
   group('OrderMapper', () {
-    test('Map #1', () {
-      expect(OrderMapper.fromDTO(ordersDTO[0]), orders[0]);
-    });
-
-    test('Map #2', () {
-      expect(OrderMapper.fromDTO(ordersDTO[1]), orders[1]);
-    });
+    for (int i = 0; i < min(ordersDTO.length, orders.length); i++) {
+      test('Map #${i + 1}', () {
+        expect(OrderMapper.fromDTO(ordersDTO[i]), orders[i]);
+      });
+    }
   });
 
   group('Order type mapper', () {
@@ -27,5 +28,13 @@ void main() {
     test('OrderType.none for another values', () {
       expect(OrderMapper.typeFromDTO(5), OrderType.none);
     });
+  });
+
+  group('OrderDTO.fromJSON', () {
+    for (int i = 0; i < min(ordersDTO.length, ordersJSON.length); i++) {
+      test('Map #${i + 1}', () {
+        expect(OrderDTO.fromJson(ordersJSON[i]), ordersDTO[i]);
+      });
+    }
   });
 }

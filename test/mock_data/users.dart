@@ -6,6 +6,14 @@ import 'package:crypto_currency/features/auth/domain/entities/user_coin.dart';
 import 'coins.dart';
 import 'orders.dart';
 
+final List<Map<String, dynamic>> userCoinsJSON = [
+  for (int i = 0; i < coinsJSON.length; i++)
+    {
+      'coin': coinsJSON[i],
+      'amount': i,
+    }
+];
+
 final List<UserCoinDTO> userCoinsDTO = [
   for (int i = 0; i < coinsDTO.length; i++)
     UserCoinDTO(coin: coinsDTO[i], amount: i.toDouble())
@@ -14,6 +22,25 @@ final List<UserCoinDTO> userCoinsDTO = [
 final List<UserCoin> userCoins = [
   for (int i = 0; i < coins.length; i++)
     UserCoin(coin: coins[i], amount: i.toDouble())
+];
+
+List<Map<String, dynamic>> usersJSON = [
+  {
+    'id': '0',
+    'name': 'Example 1',
+    'balance': 5000.0,
+    'coins': userCoinsJSON,
+    'favorites': coinsJSON,
+    'orders': ordersJSON,
+  },
+  {
+    'id': '1',
+    'name': '',
+    'balance': 0.0,
+    'coins': [],
+    'favorites': [],
+    'orders': [],
+  }
 ];
 
 List<UserDTO> usersDTO = [

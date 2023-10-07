@@ -1,16 +1,25 @@
+import 'dart:math';
+
 import 'package:crypto_currency/features/auth/data/mappers/user_mapper.dart';
+import 'package:crypto_currency/features/auth/data/models/user_dto.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../../../mock_data/users.dart';
 
 void main() {
   group('UserMapper', () {
-    test('Map #1', () {
-      expect(UserMapper.fromDTO(usersDTO[0]), users[0]);
-    });
+    for (int i = 0; i < min(usersDTO.length, users.length); i++) {
+      test('Map #${i + 1}', () {
+        expect(UserMapper.fromDTO(usersDTO[i]), users[i]);
+      });
+    }
+  });
 
-    test('Map #2', () {
-      expect(UserMapper.fromDTO(usersDTO[1]), users[1]);
-    });
+  group('UserDTO.fromJson', () {
+    for (int i = 0; i < min(usersJSON.length, usersDTO.length); i++) {
+      test('Map #${i + 1}', () {
+        expect(UserDTO.fromJson(usersJSON[i]), usersDTO[i]);
+      });
+    }
   });
 }

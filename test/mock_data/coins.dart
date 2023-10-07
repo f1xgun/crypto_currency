@@ -1,6 +1,21 @@
 import 'package:crypto_currency/features/coin_ranking_list/data/models/coin_dto.dart';
 import 'package:crypto_currency/features/coin_ranking_list/domain/entities/coin.dart';
 
+final List<Map<String, dynamic>> coinsJSON = [
+  {
+    'symbol': 'BTC',
+    'price': 25000.0,
+    'high_price': 30000.0,
+    'price_change_percent_24h': 24.0
+  },
+  {
+    'symbol': 'ETH',
+    'price': 5000.0,
+    'high_price': 2000.0,
+    'price_change_percent_24h': -5.24
+  }
+];
+
 final List<CoinDTO> coinsDTO = [
   const CoinDTO(
       symbol: 'BTC', price: 25000, highPrice: 30000, priceChangePercent24h: 24),

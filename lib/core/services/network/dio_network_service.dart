@@ -55,32 +55,4 @@ class DioNetworkService implements NetworkService {
     return NetworkHandler.parseResult(
         dio.put(endpoint, queryParameters: queryParameters));
   }
-
-//   Future<T> _request<T>(Future<T> Function() requestFunc) async {
-//     try {
-//       return await requestFunc();
-//     } on DioException catch (dioException) {
-//       switch (dioException.type) {
-//         case DioExceptionType.connectionTimeout:
-//         case DioExceptionType.receiveTimeout:
-//         case DioExceptionType.sendTimeout:
-//         case DioExceptionType.cancel:
-//         case DioExceptionType.connectionError:
-//           throw NoInternetException();
-//         case DioExceptionType.badResponse:
-//           throw ResponseException(message: dioException.error.toString());
-//         default:
-//           if (dioException.error is SocketException) {
-//             throw NoInternetException();
-//           } else {
-//             throw UnknownNetworkException(
-//                 message: dioException.error.toString());
-//           }
-//       }
-//     } on SocketException catch (_) {
-//       throw NoInternetException();
-//     } on Object catch (err) {
-//       throw UnknownNetworkException(message: err.toString());
-//     }
-//   }
 }
