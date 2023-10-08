@@ -4,6 +4,6 @@ import 'package:crypto_currency/features/auth/presentation/controllers/auth_stat
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final authControllerProvider =
-    StateNotifierProvider.autoDispose<AuthController, AuthState>((ref) {
+    StateNotifierProvider<AuthController, AuthState>((ref) {
   return AuthController(authUseCase: ref.read(authUseCaseProvider));
 });

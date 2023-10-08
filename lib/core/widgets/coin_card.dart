@@ -1,10 +1,10 @@
 import 'package:crypto_currency/core/extensions/build_context_extension.dart';
-import 'package:crypto_currency/models/crypto_coin/crypto_coin.dart';
+import 'package:crypto_currency/features/coin_ranking_list/domain/entities/coin.dart';
 import 'package:flutter/material.dart';
 
 class CoinCard extends StatelessWidget {
   const CoinCard({required this.coin, super.key});
-  final CryptoCoin coin;
+  final Coin coin;
 
   @override
   Widget build(BuildContext context) {
@@ -18,15 +18,15 @@ class CoinCard extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Expanded(child: CoinCardLeading(coinId: coin.id)),
+          Expanded(child: CoinCardLeading(url: coin.imageUrl ?? '')),
           const SizedBox(width: 4),
           Expanded(
             flex: 3,
-            child: CoinCardName(name: coin.name, symbol: coin.symbol),
+            child: CoinCardName(name: coin.symbol, symbol: coin.symbol),
           ),
-          Expanded(flex: 2, child: CoinCardPrice(price: coin.quote.price)),
+          Expanded(flex: 2, child: CoinCardPrice(price: coin.price)),
           Expanded(
-              child: CoinCardPercentChange(percent: coin.quote.percentChange1H))
+              child: CoinCardPercentChange(percent: coin.priceChangePercent24h))
         ],
       ),
     );
@@ -34,15 +34,15 @@ class CoinCard extends StatelessWidget {
 }
 
 class CoinCardLeading extends StatelessWidget {
-  const CoinCardLeading({required this.coinId, super.key});
-  final int coinId;
+  const CoinCardLeading({required this.url, super.key});
+  final String url;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox.square(
       dimension: 32,
       child: Image.network(
-        'https://s2.coinmarketcap.com/static/img/coins/32x32/$coinId.png',
+        url,
       ),
     );
   }
