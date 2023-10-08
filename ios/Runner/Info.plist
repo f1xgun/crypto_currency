@@ -49,5 +49,18 @@
 		<true/>
 		<key>UIStatusBarHidden</key>
 		<true/>
+		<key>FlutterDeepLinkingEnabled</key>
+		<true/>
+		<key>CFBundleURLTypes</key>
+		<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>crypto_currency_sim</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+			<string>f1xgun</string>
+			</array>
+		</dict>
+		</array>
 	</dict>
 </plist>
