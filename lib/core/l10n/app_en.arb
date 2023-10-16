@@ -87,5 +87,10 @@
     "alreadyHaveAccount": "Already have an account?",
     "@alreadyHaveAccount": {
         "description": "Asking text about you have an account"
+    },
+
+    "agreeWithPolicy": "By tapping, you accept the Privacy Policy and Terms of use",
+    "@agreeWithPolicy": {
+        "description": "Text about what you accept in registration page"
     }
 }

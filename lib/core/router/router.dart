@@ -1,6 +1,7 @@
 import 'package:crypto_currency/core/services/storage/shared_preferences_provider.dart';
 import 'package:crypto_currency/features/auth/presentation/pages/login_page.dart';
 import 'package:crypto_currency/features/auth/presentation/pages/onboarding_page.dart';
+import 'package:crypto_currency/features/auth/presentation/pages/registration_page.dart';
 import 'package:crypto_currency/features/auth/presentation/pages/splash_page.dart';
 import 'package:crypto_currency/features/auth/presentation/providers/auth_controller_provider.dart';
 import 'package:crypto_currency/features/coin_ranking_list/presentation/pages/ranking_page.dart';
@@ -41,12 +42,13 @@ class RouterNotifier extends ChangeNotifier {
           orElse: () => false,
         );
 
-    if (isAuth) return HomePage.routeLocation;
+    final bool isSplashPage = state.fullPath == SplashPage.routeLocation;
 
     final bool isOnboardingPage =
         state.fullPath == OnboardingPage.routeLocation;
 
-    if (isOnboardingPage) {
+    if (isSplashPage || isOnboardingPage) {
+      if (isAuth) return HomePage.routeLocation;
       final seenOnboard = _ref
           .watch(sharedPreferencesProvider)
           .whenData((value) => value.getBool('seenOnboard'));
@@ -58,11 +60,22 @@ class RouterNotifier extends ChangeNotifier {
       }
     }
 
+    final bool isRegistrationPage =
+        state.fullPath == RegistrationPage.routeLocation;
+
+    if (isRegistrationPage) {
+      return isAuth ? HomePage.routeLocation : RegistrationPage.routeLocation;
+    }
+
     final bool isLoginPage = state.fullPath == LoginPage.routeLocation;
 
-    if (isLoginPage) return LoginPage.routeLocation;
+    if (isLoginPage) {
+      return isAuth ? HomePage.routeLocation : LoginPage.routeLocation;
+    }
 
-    return LoginPage.routeLocation;
+    if (isAuth) return null;
+
+    return SplashPage.routeLocation;
   }
 
   List<GoRoute> get _routes => [
@@ -80,6 +93,11 @@ class RouterNotifier extends ChangeNotifier {
           path: LoginPage.routeLocation,
           name: LoginPage.routeName,
           builder: (context, state) => const LoginPage(),
+        ),
+        GoRoute(
+          path: RegistrationPage.routeLocation,
+          name: RegistrationPage.routeName,
+          builder: (context, state) => const RegistrationPage(),
         ),
         GoRoute(
           path: HomePage.routeLocation,

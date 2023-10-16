@@ -11,8 +11,8 @@ class NetworkAuthDataSource implements AuthDataSource {
   @override
   Future<(UserDTO, String)> signIn(
       {required String email, required String password}) async {
-    final result = await networkService
-        .post('/', queryParameters: {'email': email, 'password': password});
+    final result = await networkService.post('/login',
+        queryParameters: {'email': email, 'password': password});
     if (result.containsKey('token') && result.containsKey('user')) {
       final String token = result['token'] as String;
       final UserDTO userDTO =
@@ -26,7 +26,7 @@ class NetworkAuthDataSource implements AuthDataSource {
 
   @override
   Future<void> signUp({required String email, required String password}) async {
-    await networkService
-        .post('/', queryParameters: {'email': email, 'password': password});
+    await networkService.post('/registration',
+        queryParameters: {'email': email, 'password': password});
   }
 }

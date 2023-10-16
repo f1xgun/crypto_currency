@@ -2,23 +2,27 @@ import 'package:crypto_currency/core/extensions/build_context_extension.dart';
 import 'package:flutter/material.dart';
 
 class FieldOfForm extends StatelessWidget {
-  final String text;
+  final String placeholderText;
   final Widget? prefixIcon;
   final Widget? suffixIcon;
   final double height;
   final EdgeInsets padding;
   final TextEditingController inputController;
   final bool isPassword;
+  final void Function(String)? onChanged;
+  final TextInputType? textInputType;
 
   const FieldOfForm({
-    required this.text,
+    required this.placeholderText,
     required this.height,
     required this.padding,
     required this.inputController,
+    this.textInputType,
     super.key,
     this.prefixIcon,
     this.suffixIcon,
     this.isPassword = false,
+    this.onChanged,
   });
 
   @override
@@ -35,7 +39,9 @@ class FieldOfForm extends StatelessWidget {
         children: [
           if (prefixIcon != null) prefixIcon!,
           Expanded(
-            child: TextField(
+            child: TextFormField(
+              keyboardType: textInputType,
+              onChanged: onChanged,
               textInputAction: TextInputAction.next,
               controller: inputController,
               style: context.textStyles.h4.copyWith(
@@ -44,7 +50,7 @@ class FieldOfForm extends StatelessWidget {
                 height: 1,
               ),
               decoration: InputDecoration(
-                hintText: text,
+                hintText: placeholderText,
                 hintStyle: context.textStyles.h4.copyWith(
                   color: context.colors.suffixInput,
                 ),

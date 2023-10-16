@@ -33,5 +33,7 @@
 
     "dontHaveAccount": "Нет аккаунта?",
 
-    "alreadyHaveAccount": "Уже есть аккаунт?"
+    "alreadyHaveAccount": "Уже есть аккаунт?",
+
+    "agreeWithPolicy": "Нажав, вы принимаете Политику конфиденциальности и условия использования"
 }

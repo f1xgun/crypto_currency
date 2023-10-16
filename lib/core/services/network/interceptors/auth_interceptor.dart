@@ -1,4 +1,3 @@
-import 'package:crypto_currency/core/logger/logger.dart';
 import 'package:crypto_currency/core/services/storage/secure_storage.dart';
 import 'package:dio/dio.dart';
 
@@ -10,8 +9,7 @@ class AuthInterceptor implements Interceptor {
 
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) {
-    logger.error(
-        message: err.message ?? '', stackTrace: err.stackTrace, e: err);
+    return handler.reject(err);
   }
 
   @override

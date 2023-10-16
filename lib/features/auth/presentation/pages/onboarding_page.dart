@@ -121,4 +121,10 @@ class _OnboardingPageState extends State<OnboardingPage> {
       ),
     );
   }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _pageController.dispose();
+  }
 }
