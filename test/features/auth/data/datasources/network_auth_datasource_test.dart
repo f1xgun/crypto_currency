@@ -24,7 +24,7 @@ void main() {
       /// if exception throwed early from NetworkService
 
       test('NetworkService return Map with keys token and user', () async {
-        when(() => mockNetworkService.post('/',
+        when(() => mockNetworkService.post('/login',
                 queryParameters: {'email': 'email', 'password': 'password'}))
             .thenAnswer(
           (_) => Future.value(
@@ -43,7 +43,7 @@ void main() {
       });
 
       test('NetworkService return Map with only token key', () async {
-        when(() => mockNetworkService.post('/',
+        when(() => mockNetworkService.post('/login',
                 queryParameters: {'email': 'email', 'password': 'password'}))
             .thenAnswer(
           (_) => Future.value(<String, dynamic>{'token': 'token'}),
@@ -56,7 +56,7 @@ void main() {
       });
 
       test('NetworkService return Map with only user key', () async {
-        when(() => mockNetworkService.post('/',
+        when(() => mockNetworkService.post('/login',
                 queryParameters: {'email': 'email', 'password': 'password'}))
             .thenAnswer(
           (_) => Future.value(<String, dynamic>{'user': usersJSON[0]}),
@@ -69,7 +69,7 @@ void main() {
       });
 
       test('NetworkService return Map without token and user key', () async {
-        when(() => mockNetworkService.post('/',
+        when(() => mockNetworkService.post('/login',
                 queryParameters: {'email': 'email', 'password': 'password'}))
             .thenAnswer(
           (_) => Future.value(<String, dynamic>{}),
@@ -83,7 +83,7 @@ void main() {
       });
 
       test('NetworkService throw AppStateWrong.error', () async {
-        when(() => mockNetworkService.post('/',
+        when(() => mockNetworkService.post('/login',
                 queryParameters: {'email': 'email', 'password': 'password'}))
             .thenThrow(AppStateWrong.error('[500] server error'));
 
@@ -99,7 +99,7 @@ void main() {
       /// else return void
 
       test('NetworkService throw AppStateWrong.error', () async {
-        when(() => mockNetworkService.post('/',
+        when(() => mockNetworkService.post('/registration',
                 queryParameters: {'email': 'email', 'password': 'password'}))
             .thenThrow(AppStateWrong.error('[500] server error'));
 
@@ -110,7 +110,7 @@ void main() {
       });
 
       test('NetworkService return some value', () async {
-        when(() => mockNetworkService.post('/',
+        when(() => mockNetworkService.post('/registration',
                 queryParameters: {'email': 'email', 'password': 'password'}))
             .thenAnswer((_) => Future.value({}));
 
